@@ -66,7 +66,7 @@ public class CookieUtils {
 	public static void removeCookie(HttpServletResponse response, String name, String domain) {
         Cookie userCookie = new Cookie(name, null);
 		userCookie.setPath("/");
-        userCookie.setDomain(domain);
+//        userCookie.setDomain(domain);
 		userCookie.setMaxAge(0);
 		response.addCookie(userCookie);
 	}

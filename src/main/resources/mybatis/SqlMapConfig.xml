@@ -5,9 +5,9 @@
 <configuration>
 
 
-    <!--<typeHandlers>-->
-        <!--<typeHandler handler="com.ontime.enums.IntegerEnumTypeHandler" javaType="com.manager.enums.YesNoEnum" />-->
-    <!--</typeHandlers>-->
+    <typeHandlers>
+        <typeHandler handler="com.ontime.enums.IntegerEnumTypeHandler" javaType="com.ontime.enums.YesNoEnum" />
+    </typeHandlers>
 
 
     <plugins>

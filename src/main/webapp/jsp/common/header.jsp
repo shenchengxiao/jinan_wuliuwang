@@ -19,12 +19,11 @@
 
 <link href="${ctx }/static/css/animate.css" rel="stylesheet">
 <link href="${ctx }/static/css/style.css?v=2.2.0" rel="stylesheet">
-<link href="${ctx }/static/css/lanrenzhijia.css" rel="stylesheet">
-<link href="${ctx }/static/css/pagination.css" rel="stylesheet">
+<%--<link href="${ctx }/static/css/pagination.css" rel="stylesheet">--%>
 
-<link href="${ctx }/static/css/diyUpload.css" rel="stylesheet">
-<link href="${ctx }/static/css/webuploader.css" rel="stylesheet">
-<link href="${ctx }/static/css/uploadify.css" rel="stylesheet">
+<%--<link href="${ctx }/static/css/diyUpload.css" rel="stylesheet">--%>
+<%--<link href="${ctx }/static/css/webuploader.css" rel="stylesheet">--%>
+<%--<link href="${ctx }/static/css/uploadify.css" rel="stylesheet">--%>
 
 
 <title>${systemTitle}</title>
@@ -35,6 +34,9 @@
 <script src="${ctx}/static/js/bootstrap.min.js?v=3.4.0"></script>
 <script src="${ctx}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <%--<script src="${ctx}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>--%>
+
+<script src="${ctx}/static/js/toast.js"></script>
+<script src="${ctx}/static/js/progressbar.js"></script>
 
 <!-- Flot -->
 <script src="${ctx}/static/js/plugins/flot/jquery.flot.js"></script>
@@ -64,7 +66,6 @@
 <script src="${ctx}/static/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="${ctx}/static/js/plugins/validate/messages_zh.min.js"></script>
 
-<!-- 文件上传 -->
-<script src="${ctx}/static/js/plugins/divupload/webuploader.html5only.min.js"></script>
-<script src="${ctx}/static/js/plugins/upload/jquery.uploadify.js"></script>
+
+<script src="${ctx}/js/common.js"></script>
 

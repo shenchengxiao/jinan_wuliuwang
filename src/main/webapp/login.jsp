@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@include file="/jsp/common/header.jsp"%>
 <head>
     <meta charset="UTF-8">
@@ -15,19 +13,18 @@
         </div>
         <h3>欢迎使用按时达后台管理</h3>
 
-        <form method="post" action="${ctx}/api/web/user/submit">
+        <form id="user_login_form">
             <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="用户名" required="">
+                <input type="text" class="form-control" name="userName" placeholder="用户名" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="密码" required="">
+                <input type="password" class="form-control" name="passWord" placeholder="密码" required="">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
-            </p>
+            <button type="submit" class="btn btn-primary block full-width m-b" id="btn_submit_login">登 录</button>
         </form>
-        <font color="red"><c:out value="${loginError}"></c:out>
     </div>
 </div>
 
 
 </body>
+<script src="${ctx}/js/login.js"></script>

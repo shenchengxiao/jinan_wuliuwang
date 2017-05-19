@@ -35,8 +35,10 @@ public enum BusinessStatusEnum implements IBusinessStatusEnum {
     USER_LOGIN_STATUS_INVALID(                      100400001, "用户未登录."),
     USER_MODIFY_PASSWORD_OLD_WRONG(                 100400002, "原密码不正确."),
     USER_PASSWORD_WRONG(                            100400003, "密码不正确."),
+    USERNAME_OR_PASSWORD_ERR(                       100400004, "用户名或者密码错误"),
     LOGIN_ACCOUNT_LOG_ON_OTHER_WEB(                 100400100, "您的账号已经在其他浏览器登录."),
     LOGIN_ACCOUNT_LOG_ON_OTHER_CLIENT(              100400101, "您的账号已经在其他移动设备登录."),
+
     /** 1005XXXXX系统错误 */
     SYSTEM_ERROR(                                   100500000, "系统错误."),
 

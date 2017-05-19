@@ -6,11 +6,15 @@
 
         </div>
         <ul class="nav navbar-top-links navbar-right">
+
+            <li>
+                <span class="m-r-sm text-muted welcome-message" id="login_user_name">super</span>
+            </li>
             <li>
                 <span class="m-r-sm text-muted welcome-message"><a href="/" title="返回首页"><i class="fa fa-home"></i></a>欢迎使用</span>
             </li>
             <li>
-                <a href="${ctx}/api/web/logout">
+                <a href="javascript:;" id="logout">
                     <i class="fa fa-sign-out"></i> 退出
                 </a>
             </li>

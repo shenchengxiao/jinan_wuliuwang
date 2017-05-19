@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ontime.mapper.QUsersMapper" >
+  <resultMap id="BaseResultMap" type="com.ontime.pojo.QUsers" >
+    <id column="qu_id" property="quId" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="cert_name" property="certName" jdbcType="VARCHAR" />
+    <result column="cert_number" property="certNumber" jdbcType="VARCHAR" />
+    <result column="cert_address" property="certAddress" jdbcType="VARCHAR" />
+    <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+    <result column="comp_address" property="compAddress" jdbcType="VARCHAR" />
+    <result column="comp_phone" property="compPhone" jdbcType="VARCHAR" />
+    <result column="comp_introduction" property="compIntroduction" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="user_type_id" property="userTypeId" jdbcType="INTEGER" />
+    <result column="zline_city" property="zlineCity" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    qu_id, username, password, phone, register_time, update_time, cert_name, cert_number, 
+    cert_address, comp_name, comp_address, comp_phone, comp_introduction, remark, admin_id, 
+    start_time, user_type_id, zline_city
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ontime.pojo.QUsersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from q_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from q_users
+    where qu_id = #{quId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from q_users
+    where qu_id = #{quId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ontime.pojo.QUsersExample" >
+    delete from q_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ontime.pojo.QUsers" >
+    <selectKey resultType="java.lang.Integer" keyProperty="quId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into q_users (username, password, phone, 
+      register_time, update_time, cert_name, 
+      cert_number, cert_address, comp_name, 
+      comp_address, comp_phone, comp_introduction, 
+      remark, admin_id, start_time, 
+      user_type_id, zline_city)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{registerTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{certName,jdbcType=VARCHAR}, 
+      #{certNumber,jdbcType=VARCHAR}, #{certAddress,jdbcType=VARCHAR}, #{compName,jdbcType=VARCHAR}, 
+      #{compAddress,jdbcType=VARCHAR}, #{compPhone,jdbcType=VARCHAR}, #{compIntroduction,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{adminId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{userTypeId,jdbcType=INTEGER}, #{zlineCity,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ontime.pojo.QUsers" >
+    <selectKey resultType="java.lang.Integer" keyProperty="quId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into q_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="certName != null" >
+        cert_name,
+      </if>
+      <if test="certNumber != null" >
+        cert_number,
+      </if>
+      <if test="certAddress != null" >
+        cert_address,
+      </if>
+      <if test="compName != null" >
+        comp_name,
+      </if>
+      <if test="compAddress != null" >
+        comp_address,
+      </if>
+      <if test="compPhone != null" >
+        comp_phone,
+      </if>
+      <if test="compIntroduction != null" >
+        comp_introduction,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="userTypeId != null" >
+        user_type_id,
+      </if>
+      <if test="zlineCity != null" >
+        zline_city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certName != null" >
+        #{certName,jdbcType=VARCHAR},
+      </if>
+      <if test="certNumber != null" >
+        #{certNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certAddress != null" >
+        #{certAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="compName != null" >
+        #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="compAddress != null" >
+        #{compAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="compPhone != null" >
+        #{compPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="compIntroduction != null" >
+        #{compIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userTypeId != null" >
+        #{userTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="zlineCity != null" >
+        #{zlineCity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ontime.pojo.QUsersExample" resultType="java.lang.Integer" >
+    select count(*) from q_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update q_users
+    <set >
+      <if test="record.quId != null" >
+        qu_id = #{record.quId,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerTime != null" >
+        register_time = #{record.registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.certName != null" >
+        cert_name = #{record.certName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certNumber != null" >
+        cert_number = #{record.certNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certAddress != null" >
+        cert_address = #{record.certAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compName != null" >
+        comp_name = #{record.compName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compAddress != null" >
+        comp_address = #{record.compAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compPhone != null" >
+        comp_phone = #{record.compPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compIntroduction != null" >
+        comp_introduction = #{record.compIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminId != null" >
+        admin_id = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userTypeId != null" >
+        user_type_id = #{record.userTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.zlineCity != null" >
+        zline_city = #{record.zlineCity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update q_users
+    set qu_id = #{record.quId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      register_time = #{record.registerTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      cert_name = #{record.certName,jdbcType=VARCHAR},
+      cert_number = #{record.certNumber,jdbcType=VARCHAR},
+      cert_address = #{record.certAddress,jdbcType=VARCHAR},
+      comp_name = #{record.compName,jdbcType=VARCHAR},
+      comp_address = #{record.compAddress,jdbcType=VARCHAR},
+      comp_phone = #{record.compPhone,jdbcType=VARCHAR},
+      comp_introduction = #{record.compIntroduction,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      admin_id = #{record.adminId,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      user_type_id = #{record.userTypeId,jdbcType=INTEGER},
+      zline_city = #{record.zlineCity,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ontime.pojo.QUsers" >
+    update q_users
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certName != null" >
+        cert_name = #{certName,jdbcType=VARCHAR},
+      </if>
+      <if test="certNumber != null" >
+        cert_number = #{certNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certAddress != null" >
+        cert_address = #{certAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="compName != null" >
+        comp_name = #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="compAddress != null" >
+        comp_address = #{compAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="compPhone != null" >
+        comp_phone = #{compPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="compIntroduction != null" >
+        comp_introduction = #{compIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userTypeId != null" >
+        user_type_id = #{userTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="zlineCity != null" >
+        zline_city = #{zlineCity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where qu_id = #{quId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ontime.pojo.QUsers" >
+    update q_users
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      cert_name = #{certName,jdbcType=VARCHAR},
+      cert_number = #{certNumber,jdbcType=VARCHAR},
+      cert_address = #{certAddress,jdbcType=VARCHAR},
+      comp_name = #{compName,jdbcType=VARCHAR},
+      comp_address = #{compAddress,jdbcType=VARCHAR},
+      comp_phone = #{compPhone,jdbcType=VARCHAR},
+      comp_introduction = #{compIntroduction,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      user_type_id = #{userTypeId,jdbcType=INTEGER},
+      zline_city = #{zlineCity,jdbcType=VARCHAR}
+    where qu_id = #{quId,jdbcType=INTEGER}
+  </update>
+</mapper>

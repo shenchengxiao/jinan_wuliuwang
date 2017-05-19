@@ -230,7 +230,7 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <configuration>
           <port>8080</port>
-          <path>/online_come</path>
+          <path>/ontime_come</path>
         </configuration>
       </plugin>
       <!-- java编译插件 -->
