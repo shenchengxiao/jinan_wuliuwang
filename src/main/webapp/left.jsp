@@ -12,7 +12,7 @@
             <li>
                 <a href="#"><i class="fa fa-columns"></i> <span class="nav-label">用户管理 </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${ctx}/api/web/activity/list">车主管理</a>
+                    <li><a href="${ctx}/jsp/view/trunk/user_list.jsp">车主管理</a>
                     </li>
                     <li><a href="${ctx}/jsp/view/companyline/company_line_list.jsp">企业与专线管理</a>
                     </li>

@@ -31,10 +31,28 @@
                         </div>
                     </div>
                     <div class="ibox-content">
+                        <form role="form" class="form-inline" id="cuser_form">
+                        	<input type="hidden" name="pageNum" id="pageNum" value="1">
+                            <div class="form-group">
+                                <label class="sr-only">账号</label>
+                                <input type="text" placeholder="请输入账号" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">姓名</label>
+                                <input type="text" placeholder="请输入姓名" name="certName" id="certName" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">电话</label>
+                                <input type="text" placeholder="请输入电话" name="carPhone" id="carPhone" class="form-control">
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-primary" type="button" id="btn_search">查询</button>
+                        </form>
+                    </div>
+                    <div class="ibox-content">
 						<div class="">
                             <a href="${ctx}/jsp/view/trunk/add_user.jsp" class="btn btn-primary">添加</a>
                         </div>
-                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <table id="cuser_list" class="table table-striped table-bordered table-hover dataTables-example">
                             <thead>
                                 <tr>
                                     <th>账号</th>
@@ -42,18 +60,10 @@
                                     <th>姓名</th>
                                     <th>电话</th>
                                     <th>开户人</th>
+                                    <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${user}" var="u">
-                                <tr class="gradeA">
-                                    <td>${u.username}</td>
-                                    <td>${u.registerTime }</td>
-                                    <td>${u.certName }</td>
-                                    <td class="center">${u.carPhone }</td>
-                                    <td class="center">${u.adminId }</td>
-                                </tr>
-                            </c:forEach>
                             </tbody>
                            <!--  <tfoot>
                                 <tr>
@@ -66,14 +76,18 @@
                             </tfoot> -->
                         </table>
                     </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="pull-right pagination">
+                                <ul id="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        
-        
         <jsp:include page="/footer.jsp"/>
     </div>
 </div>
-
+<script src="${ctx}/js/trunk/user_list.js"></script>
 </body>

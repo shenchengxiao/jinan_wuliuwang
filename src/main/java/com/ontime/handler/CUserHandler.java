@@ -28,6 +28,7 @@ import com.ontime.pojo.CUsers;
 import com.ontime.pojo.QLoginLimit;
 import com.ontime.request.trunk.CUserRequest;
 import com.ontime.service.CUsersService;
+import com.ontime.utils.Page;
 import com.ontime.utils.Validator;
 import com.ontime.utils.YCSystemStatusEnum;
 
@@ -35,6 +36,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -86,9 +88,12 @@ public class CUserHandler {
         	
             //判断ID是否为空，是则添加，否则更新
             if (request.getCuId() == null) {
-            	/*AuthUser authUser = ActionContext.getActionContext().currentUser();
-            	user.setAdminId(authUser.getId().intValue());*/
-
+            	AuthUser authUser = ActionContext.getActionContext().currentUser();
+            	user.setAdminId(authUser.getId().intValue());
+            	user.setRegisterTime(new Date());
+            	
+            	List<CUsers> cusers = userService.getUser(user);
+            	
                 Integer id = userService.insert(user);
 
                 //添加登录绑定信息
@@ -99,11 +104,13 @@ public class CUserHandler {
                 }
                 
             } else {
+            	
+            	user.setUpdateTime(new Date());
             	boolean result = userService.update(user);
-
                 //修改绑定信息
             	if(result){
             		limit.setQuserId(request.getCuId());
+            		limit.setUpdateTime(new Date());
             		userService.updateLimit(limit);
             	}
 
@@ -114,14 +121,40 @@ public class CUserHandler {
         }
     }
     
-    
-    public List<CUsers> queryCUser(CUsers user)throws YCException{
+    /**
+     *  车主信息
+     * @param user
+     * @return
+     * @throws YCException
+     */
+    public List<CUsers> getUser(CUsers user)throws YCException{
     	try {
-			return userService.queryUser(user);
+            
+			return userService.getUser(user);
 		} catch (DatabaseException e) {
 			LOG.error("editUser exception", user);
             throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
 		}
+    }
+    
+    /**
+     * 车主信息列表
+     * @param user
+     * @return
+     * @throws YCException
+     */
+    public Page<CUsers> queryCUser(CUserRequest userRequest)throws YCException{
+		Page<CUsers> page = null;
+        try {
+            page = userService.queryUser(userRequest);
+            page.setPagesize(page.getPagesize());
+            page.setPageindex(page.getPageindex());
+            page.setTotal(page.getTotal());
+        } catch (DatabaseException e) {
+            LOG.error("fetchBlackwordList exception",userRequest);
+            throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
+        }
+		return page;
     }
 
 }

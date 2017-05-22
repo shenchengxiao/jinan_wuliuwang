@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.ontime.exception.DatabaseException;
+import com.ontime.interceptor.PageMybatisInterceptor;
 import com.ontime.mapper.CUsersMapper;
 import com.ontime.mapper.QLoginLimitMapper;
 import com.ontime.pojo.CUsers;
@@ -19,6 +21,7 @@ import com.ontime.pojo.QLoginLimit;
 import com.ontime.pojo.QLoginLimitExample;
 import com.ontime.request.trunk.CUserRequest;
 import com.ontime.service.CUsersService;
+import com.ontime.utils.Page;
 
 @Service
 public class CUsersServiceImpl implements CUsersService{
@@ -66,7 +69,36 @@ public class CUsersServiceImpl implements CUsersService{
 	}
 	
 	@Override
-	public List<CUsers> queryUser(CUsers user) throws DatabaseException {
+	public Page<CUsers> queryUser(CUserRequest userRequest) throws DatabaseException {
+		try {
+			CUsersExample example = new CUsersExample();
+			Criteria criteria = example.createCriteria();
+			if(StringUtils.isNotBlank(userRequest.getUsername())){
+				criteria.andUsernameEqualTo(userRequest.getUsername());
+			}
+			
+			if(StringUtils.isNotBlank(userRequest.getCertName())){
+				criteria.andCertNameEqualTo(userRequest.getCertName());
+			}
+			
+			if(StringUtils.isNotBlank(userRequest.getCarPhone())){
+				criteria.andCarPhoneLike("%"+userRequest.getCarPhone()+"%");
+			}
+			
+			PageMybatisInterceptor.startPage(userRequest.getPageNum(),userRequest.getPageSize());
+			userMapper.selectByExample(example);
+            Page<CUsers> page = PageMybatisInterceptor.endPage();
+			
+			return page;
+
+		} catch (Throwable e) {
+	        LOG.error("queryUser 异常",userRequest);
+	        throw new DatabaseException(e.getMessage());
+	    }
+	}
+	
+	@Override
+	public List<CUsers> getUser(CUsers user) throws DatabaseException {
 		try {
 			CUsersExample example = new CUsersExample();
 			Criteria criteria = example.createCriteria();
@@ -85,7 +117,7 @@ public class CUsersServiceImpl implements CUsersService{
 			return userMapper.selectByExample(example);
 
 		} catch (Throwable e) {
-	        LOG.error("queryUser 异常",user);
+	        LOG.error("getUser 异常",user);
 	        throw new DatabaseException(e.getMessage());
 	    }
 	}

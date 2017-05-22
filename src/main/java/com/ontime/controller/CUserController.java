@@ -53,11 +53,6 @@ public class CUserController {
         return apiResponse;
     }
 	
-	/*@RequestMapping("query")
-	public String queryCUser(CUsers user,Model model) throws DatabaseException{
-		model.addAttribute("user", userService.queryUser(user));
-		return "trunk/user_list";
-	}*/
 	/**
      * 获取用户列表
      * @param request
@@ -70,7 +65,7 @@ public class CUserController {
         APIResponse<Page<CUsers>> apiResponse = new APIResponse<>();
         Page<CUsers> page = null;
         try {
-            //page = cuserHandler.fetchCUserList(userRequest);
+            page = cuserHandler.queryCUser(userRequest);
             apiResponse.setStatus(YCSystemStatusEnum.SUCCESS.getCode());
             apiResponse.setMsg(YCSystemStatusEnum.SUCCESS.getDesc());
             apiResponse.setData(page);
@@ -88,7 +83,7 @@ public class CUserController {
         APIResponse<List<CUsers>> apiResponse = new APIResponse<>();
         List<CUsers> list = null;
         try {
-            list = cuserHandler.queryCUser(user);
+            list = cuserHandler.getUser(user);
             apiResponse.setStatus(YCSystemStatusEnum.SUCCESS.getCode());
             apiResponse.setMsg(YCSystemStatusEnum.SUCCESS.getDesc());
             apiResponse.setData(list);

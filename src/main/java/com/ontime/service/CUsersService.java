@@ -6,6 +6,7 @@ import com.ontime.exception.DatabaseException;
 import com.ontime.pojo.CUsers;
 import com.ontime.pojo.QLoginLimit;
 import com.ontime.request.trunk.CUserRequest;
+import com.ontime.utils.Page;
 
 public interface CUsersService {
 	
@@ -13,7 +14,8 @@ public interface CUsersService {
 	
 	public int insert(CUsers user) throws DatabaseException; 
 	
-	public List<CUsers> queryUser(CUsers user) throws DatabaseException;
+	public Page<CUsers> queryUser(CUserRequest userRequest) throws DatabaseException;
+	public List<CUsers> getUser(CUsers user) throws DatabaseException;
 	
 	public int insertLimit(QLoginLimit limit) throws DatabaseException; 
 	

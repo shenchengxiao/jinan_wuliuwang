@@ -11,9 +11,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
 <link href="${ctx }/static/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+<link href="${ctx }/static/css/bootstrap.min14ed.css" rel="stylesheet">
+<link href="${ctx }/static/css/style.min862f.css" rel="stylesheet">
 
 <!-- Morris -->
 <link href="${ctx }/static/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+<link href="${ctx}/static/css/xcConfirm.css" rel="stylesheet" type="text/css"/>
 
 <!-- Gritter -->
 <link href="${ctx }/static/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
@@ -67,6 +71,8 @@
 <!-- 表单验证 -->
 <script src="${ctx}/static/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="${ctx}/static/js/plugins/validate/messages_zh.min.js"></script>
+<script src="${ctx}/static/js/demo/form-validate-demo.min.js"></script>
+<script src="${ctx}/static/js/xcConfirm.js"></script>
 
 <script src="${ctx}/static/js/plugins/layer/laydate/laydate.js"></script>
 
