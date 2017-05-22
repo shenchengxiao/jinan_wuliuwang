@@ -11,8 +11,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
 <link href="${ctx }/static/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
-<link href="${ctx }/static/css/bootstrap.min14ed.css" rel="stylesheet">
-<link href="${ctx }/static/css/style.min862f.css" rel="stylesheet">
 
 <!-- Morris -->
 <link href="${ctx }/static/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
@@ -25,13 +23,6 @@
 <link href="${ctx }/static/css/animate.css" rel="stylesheet">
 <link href="${ctx }/static/css/style.css?v=2.2.0" rel="stylesheet">
 <link href="${ctx }/static/js/plugins/layer/skin/layer.css" rel="stylesheet">
-<%--<link href="${ctx }/static/css/pagination.css" rel="stylesheet">--%>
-
-<%--<link href="${ctx }/static/css/diyUpload.css" rel="stylesheet">--%>
-<%--<link href="${ctx }/static/css/webuploader.css" rel="stylesheet">--%>
-<%--<link href="${ctx }/static/css/uploadify.css" rel="stylesheet">--%>
-
-
 <title>${systemTitle}</title>
 </head>
 

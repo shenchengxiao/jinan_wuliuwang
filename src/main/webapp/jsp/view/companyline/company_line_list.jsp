@@ -24,7 +24,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <div class="row">
-                                <form id="formId" method="post">
+                                <form id="user_list_form" method="post">
                                     <div class="col-sm-2">
                                         <div align="left">
                                             <select id="status" name="activityQueryStatus" class="form-control">
@@ -52,6 +52,7 @@
                                     <div class="col-sm-2">
                                         <input type="button" class="btn btn-primary" onclick="searchList();" value="查找">
                                     </div>
+                                    <input type="hidden" name="pageNum" id="pageNum" value="1">
                                 </form>
                                 <div class="col-sm-2">
                                     <div align="right">
