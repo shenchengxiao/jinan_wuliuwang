@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ontime.mapper.QLoginLimitMapper">
+  <resultMap id="BaseResultMap" type="com.ontime.pojo.QLoginLimit">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    <id column="limit_id" jdbcType="INTEGER" property="limitId" />
+    <result column="quser_id" jdbcType="INTEGER" property="quserId" />
+    <result column="login_type_id" jdbcType="INTEGER" property="loginTypeId" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="stop_time" jdbcType="TIMESTAMP" property="stopTime" />
+    <result column="hardware" jdbcType="VARCHAR" property="hardware" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    limit_id, quser_id, login_type_id, enabled, update_time, stop_time, hardware
+  </sql>
+  <select id="selectByExample" parameterType="com.ontime.pojo.QLoginLimitExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from q_login_limit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from q_login_limit
+    where limit_id = #{limitId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    delete from q_login_limit
+    where limit_id = #{limitId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ontime.pojo.QLoginLimitExample">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    delete from q_login_limit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ontime.pojo.QLoginLimit">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    insert into q_login_limit (limit_id, quser_id, login_type_id, 
+      enabled, update_time, stop_time, 
+      hardware)
+    values (#{limitId,jdbcType=INTEGER}, #{quserId,jdbcType=INTEGER}, #{loginTypeId,jdbcType=INTEGER}, 
+      #{enabled,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{stopTime,jdbcType=TIMESTAMP}, 
+      #{hardware,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ontime.pojo.QLoginLimit">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    insert into q_login_limit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="limitId != null">
+        limit_id,
+      </if>
+      <if test="quserId != null">
+        quser_id,
+      </if>
+      <if test="loginTypeId != null">
+        login_type_id,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="stopTime != null">
+        stop_time,
+      </if>
+      <if test="hardware != null">
+        hardware,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="limitId != null">
+        #{limitId,jdbcType=INTEGER},
+      </if>
+      <if test="quserId != null">
+        #{quserId,jdbcType=INTEGER},
+      </if>
+      <if test="loginTypeId != null">
+        #{loginTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopTime != null">
+        #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hardware != null">
+        #{hardware,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ontime.pojo.QLoginLimitExample" resultType="java.lang.Integer">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    select count(*) from q_login_limit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    update q_login_limit
+    <set>
+      <if test="record.limitId != null">
+        limit_id = #{record.limitId,jdbcType=INTEGER},
+      </if>
+      <if test="record.quserId != null">
+        quser_id = #{record.quserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginTypeId != null">
+        login_type_id = #{record.loginTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.enabled != null">
+        enabled = #{record.enabled,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stopTime != null">
+        stop_time = #{record.stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hardware != null">
+        hardware = #{record.hardware,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    update q_login_limit
+    set limit_id = #{record.limitId,jdbcType=INTEGER},
+      quser_id = #{record.quserId,jdbcType=INTEGER},
+      login_type_id = #{record.loginTypeId,jdbcType=INTEGER},
+      enabled = #{record.enabled,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      stop_time = #{record.stopTime,jdbcType=TIMESTAMP},
+      hardware = #{record.hardware,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ontime.pojo.QLoginLimit">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    update q_login_limit
+    <set>
+      <if test="quserId != null">
+        quser_id = #{quserId,jdbcType=INTEGER},
+      </if>
+      <if test="loginTypeId != null">
+        login_type_id = #{loginTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopTime != null">
+        stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hardware != null">
+        hardware = #{hardware,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where limit_id = #{limitId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ontime.pojo.QLoginLimit">
+    <!--
+      WARNING - @mbggenerated
+      Generated on 2017-05-18 15:32:38.
+    -->
+    update q_login_limit
+    set quser_id = #{quserId,jdbcType=INTEGER},
+      login_type_id = #{loginTypeId,jdbcType=INTEGER},
+      enabled = #{enabled,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      hardware = #{hardware,jdbcType=VARCHAR}
+    where limit_id = #{limitId,jdbcType=INTEGER}
+  </update>
+</mapper>

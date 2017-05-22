@@ -10,9 +10,9 @@
                 </div>
             </li>
             <li>
-                <a href="#"><i class="fa fa-columns"></i> <span class="nav-label">活动 </span><span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-columns"></i> <span class="nav-label">用户管理 </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${ctx}/api/web/activity/list">活动管理</a>
+                    <li><a href="${ctx}/api/web/activity/list">车主管理</a>
                     </li>
                     <li><a href="${ctx}/api/web/activity/recommend">活动推荐管理</a>
                     </li>
