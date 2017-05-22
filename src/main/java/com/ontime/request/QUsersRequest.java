@@ -14,6 +14,9 @@ public class QUsersRequest extends BaseQuery{
     /** 电话 */
     private String phoneNumber;
 
+    /** 用户类型（1、企业版 2、专线版）*/
+    private Integer userType;
+
     public String getAccountName() {
         return accountName;
     }
@@ -36,5 +39,13 @@ public class QUsersRequest extends BaseQuery{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 }

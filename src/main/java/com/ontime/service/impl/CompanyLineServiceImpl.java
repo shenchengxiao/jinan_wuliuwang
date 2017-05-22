@@ -108,6 +108,9 @@ public class CompanyLineServiceImpl implements CompanyLineService{
             if (StringUtils.isNoneBlank(qUsersRequest.getPhoneNumber())){
                 criteria.andPhoneEqualTo(qUsersRequest.getPhoneNumber());
             }
+            if (qUsersRequest.getUserType() != null) {
+                criteria.andUserTypeIdEqualTo(qUsersRequest.getUserType());
+            }
             example.setOrderByClause("register_time desc");
             PageMybatisInterceptor.startPage(qUsersRequest.getPageNum(),qUsersRequest.getPageSize());
             qUsersMapper.selectByExample(example);

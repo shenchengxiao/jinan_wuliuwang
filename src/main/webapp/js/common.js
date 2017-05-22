@@ -45,7 +45,7 @@ var login_name;
     if(!user.isAuthenticated && location.href.indexOf('/login.jsp')<0 && location.href.indexOf('/main.jsp')>0){
         location.href="login.jsp";
     } else if (!user.isAuthenticated && location.href.indexOf('/login.jsp')<0){
-        location.href="../login.jsp";
+        location.href="../../../login.jsp";
     }
 })();
 
@@ -64,6 +64,37 @@ function  logout(){
         error: function (XMLHttpRequest, textStatus, errorThrown) {
         }
     });
+}
+
+
+/**
+ * 设置分页
+ */
+function page(pageId, totalPage, pageNo, pageSize, func, pageNum) {
+    $(pageNum).val(pageNo);
+    if (parseFloat(totalPage) > 1) {
+        $(pageId).jqPaginator({
+            totalPages: totalPage,
+            visiblePages: pageSize,
+            currentPage: pageNo,
+            first: '<li class="first"><a href="javascript:;">首页</a></li>',
+            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+            last: '<li class="last"><a href="javascript:;">尾页</a></li>',
+            onPageChange: function (num, type) {
+                if (type == 'init') {
+                    return;
+                }
+                $(pageNum).val(num);
+                func();
+            }
+        });
+    } else {
+        if ($(pageId).html().length > 1) {
+            $(pageId).jqPaginator("destroy");
+        }
+    }
 }
 
 //获取项目路径
