@@ -4,7 +4,7 @@
         By：<a href="http://www.ruwe.cn/" target="_blank">MR SHEN</a>
     </div>
     <div>
-        <strong>ANSHIDA</strong> ONTIME &copy; 2016
+        <strong>ANSHIDA</strong> ONTIME &copy; 2017
     </div>
 </div>
 

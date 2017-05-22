@@ -145,17 +145,3 @@ $("#userName").blur(function(){
     });
 })
 
-//获取项目路径
-function getRootPath()
-{
-    var pathName = window.location.pathname.substring(1);
-
-    var webName = pathName == '' ? '' : pathName.substring(0,pathName.indexOf('/'));
-
-    var path = window.location.protocol + '//' + window.location.host + '/'+ webName ;
-
-    return path;
-
-}
-//定义路径全局变量
-var manage_path=getRootPath();

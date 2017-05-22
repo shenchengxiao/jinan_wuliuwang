@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
 <link href="${ctx }/static/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+
 <!-- Morris -->
 <link href="${ctx }/static/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
 
@@ -69,5 +70,14 @@
 
 <script src="${ctx}/static/js/plugins/layer/laydate/laydate.js"></script>
 
+<script src="${ctx}/static/js/jqPaginator.js"></script>
 <script src="${ctx}/js/common.js"></script>
+
+
+<<style>
+.table th, .table td {
+text-align: center;
+vertical-align: middle!important;
+}
+</style>
 

@@ -32,6 +32,8 @@ public class CUsers extends BaseEntity {
 
     private Integer adminId;
 
+    private String adminName;
+
     private Date startTime;
 
     private Integer carStatues;
@@ -148,6 +150,14 @@ public class CUsers extends BaseEntity {
         this.adminId = adminId;
     }
 
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName == null ? null : adminName.trim();
+    }
+
     public Date getStartTime() {
         return startTime;
     }
@@ -190,6 +200,7 @@ public class CUsers extends BaseEntity {
             && (this.getCarNumber2() == null ? other.getCarNumber2() == null : this.getCarNumber2().equals(other.getCarNumber2()))
             && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()))
             && (this.getAdminId() == null ? other.getAdminId() == null : this.getAdminId().equals(other.getAdminId()))
+            && (this.getAdminName() == null ? other.getAdminName() == null : this.getAdminName().equals(other.getAdminName()))
             && (this.getStartTime() == null ? other.getStartTime() == null : this.getStartTime().equals(other.getStartTime()))
             && (this.getCarStatues() == null ? other.getCarStatues() == null : this.getCarStatues().equals(other.getCarStatues()));
     }
@@ -212,6 +223,7 @@ public class CUsers extends BaseEntity {
         result = prime * result + ((getCarNumber2() == null) ? 0 : getCarNumber2().hashCode());
         result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
         result = prime * result + ((getAdminId() == null) ? 0 : getAdminId().hashCode());
+        result = prime * result + ((getAdminName() == null) ? 0 : getAdminName().hashCode());
         result = prime * result + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
         result = prime * result + ((getCarStatues() == null) ? 0 : getCarStatues().hashCode());
         return result;

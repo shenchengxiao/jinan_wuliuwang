@@ -14,9 +14,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="${ctx}/api/web/activity/list">车主管理</a>
                     </li>
-                    <li><a href="${ctx}/api/web/activity/recommend">活动推荐管理</a>
-                    </li>
-                    <li><a href="${ctx}/api/web/tag/manage">活动标签管理</a>
+                    <li><a href="${ctx}/jsp/view/companyline/company_line_list.jsp">企业与专线管理</a>
                     </li>
                 </ul>
             </li>
