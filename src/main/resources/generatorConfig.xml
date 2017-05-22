@@ -43,8 +43,12 @@
             <!--<columnOverride column="be_used" javaType="com.ontime.enums.YesNoEnum"/>-->
         <!--</table>-->
 
-        <table tableName="q_users">
-            <generatedKey column="qu_id" sqlStatement="Mysql" type="post" identity="true"/>
+        <!--<table tableName="c_users">-->
+            <!--<generatedKey column="cu_id" sqlStatement="Mysql" type="post" identity="true"/>-->
+        <!--</table>-->
+
+        <table tableName="q_login_limit">
+            <generatedKey column="limit_id" sqlStatement="Mysql" type="post" identity="true"/>
         </table>
 
     </context>

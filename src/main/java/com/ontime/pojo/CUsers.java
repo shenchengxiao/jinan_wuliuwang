@@ -1,131 +1,40 @@
 package com.ontime.pojo;
 
-import java.io.Serializable;
+import com.ontime.request.BaseEntity;
 import java.util.Date;
 
-/**
- * [STRATO MyBatis Generator]
- * Table: c_users
-@mbggenerated do_not_delete_during_merge 2017-05-19 15:36:09
- */
-public class CUsers implements Serializable {
-    /**
-     *   车辆版用户表主键
-     * Column: c_users.cu_id
-    @mbggenerated 2017-05-19 15:36:09
-     */
+public class CUsers extends BaseEntity {
     private Integer cuId;
 
-    /**
-     *   账号
-     * Column: c_users.username
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String username;
 
-    /**
-     *   密码
-     * Column: c_users.password
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String password;
 
-    /**
-     *   注册时间
-     * Column: c_users.register_time
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private Date registerTime;
 
-    /**
-     *   修改时间
-     * Column: c_users.update_time
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private Date updateTime;
 
-    /**
-     *   真实姓名
-     * Column: c_users.cert_name
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String certName;
 
-    /**
-     *   随车电话
-     * Column: c_users.car_phone
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String carPhone;
 
-    /**
-     *   车类型
-     * Column: c_users.car_type
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String carType;
 
-    /**
-     *   车长
-     * Column: c_users.car_length
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private Double carLength;
 
-    /**
-     *   吨位
-     * Column: c_users.car_weight
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private Double carWeight;
 
-    /**
-     *   车牌号1
-     * Column: c_users.car_number1
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String carNumber1;
 
-    /**
-     *   车牌号2
-     * Column: c_users.car_number2
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String carNumber2;
 
-    /**
-     *   备注
-     * Column: c_users.remark
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private String remark;
 
-    /**
-     *   开户人id
-     * Column: c_users.admin_id
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private Integer adminId;
 
-    /**
-     *   开户时间
-     * Column: c_users.start_time
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private Date startTime;
 
-    /**
-     *   车的状态(0空车模式 1满载模式)
-     * Column: c_users.car_statues
-    @mbggenerated 2017-05-19 15:36:09
-     */
     private Integer carStatues;
-
-    /**
-     * Table: c_users
-    @mbggenerated 2017-05-19 15:36:09
-     */
-    private static final long serialVersionUID = 1L;
 
     public Integer getCuId() {
         return cuId;
@@ -253,5 +162,58 @@ public class CUsers implements Serializable {
 
     public void setCarStatues(Integer carStatues) {
         this.carStatues = carStatues;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        CUsers other = (CUsers) that;
+        return (this.getCuId() == null ? other.getCuId() == null : this.getCuId().equals(other.getCuId()))
+            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
+            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
+            && (this.getRegisterTime() == null ? other.getRegisterTime() == null : this.getRegisterTime().equals(other.getRegisterTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getCertName() == null ? other.getCertName() == null : this.getCertName().equals(other.getCertName()))
+            && (this.getCarPhone() == null ? other.getCarPhone() == null : this.getCarPhone().equals(other.getCarPhone()))
+            && (this.getCarType() == null ? other.getCarType() == null : this.getCarType().equals(other.getCarType()))
+            && (this.getCarLength() == null ? other.getCarLength() == null : this.getCarLength().equals(other.getCarLength()))
+            && (this.getCarWeight() == null ? other.getCarWeight() == null : this.getCarWeight().equals(other.getCarWeight()))
+            && (this.getCarNumber1() == null ? other.getCarNumber1() == null : this.getCarNumber1().equals(other.getCarNumber1()))
+            && (this.getCarNumber2() == null ? other.getCarNumber2() == null : this.getCarNumber2().equals(other.getCarNumber2()))
+            && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()))
+            && (this.getAdminId() == null ? other.getAdminId() == null : this.getAdminId().equals(other.getAdminId()))
+            && (this.getStartTime() == null ? other.getStartTime() == null : this.getStartTime().equals(other.getStartTime()))
+            && (this.getCarStatues() == null ? other.getCarStatues() == null : this.getCarStatues().equals(other.getCarStatues()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getCuId() == null) ? 0 : getCuId().hashCode());
+        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
+        result = prime * result + ((getRegisterTime() == null) ? 0 : getRegisterTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getCertName() == null) ? 0 : getCertName().hashCode());
+        result = prime * result + ((getCarPhone() == null) ? 0 : getCarPhone().hashCode());
+        result = prime * result + ((getCarType() == null) ? 0 : getCarType().hashCode());
+        result = prime * result + ((getCarLength() == null) ? 0 : getCarLength().hashCode());
+        result = prime * result + ((getCarWeight() == null) ? 0 : getCarWeight().hashCode());
+        result = prime * result + ((getCarNumber1() == null) ? 0 : getCarNumber1().hashCode());
+        result = prime * result + ((getCarNumber2() == null) ? 0 : getCarNumber2().hashCode());
+        result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
+        result = prime * result + ((getAdminId() == null) ? 0 : getAdminId().hashCode());
+        result = prime * result + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
+        result = prime * result + ((getCarStatues() == null) ? 0 : getCarStatues().hashCode());
+        return result;
     }
 }

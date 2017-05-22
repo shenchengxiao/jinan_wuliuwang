@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ontime.mapper.QLoginLimitMapper">
   <resultMap id="BaseResultMap" type="com.ontime.pojo.QLoginLimit">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     <id column="limit_id" jdbcType="INTEGER" property="limitId" />
     <result column="quser_id" jdbcType="INTEGER" property="quserId" />
     <result column="login_type_id" jdbcType="INTEGER" property="loginTypeId" />
@@ -15,10 +11,6 @@
     <result column="hardware" jdbcType="VARCHAR" property="hardware" />
   </resultMap>
   <sql id="Example_Where_Clause">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -48,10 +40,6 @@
     </where>
   </sql>
   <sql id="Update_By_Example_Where_Clause">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -81,22 +69,13 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     limit_id, quser_id, login_type_id, enabled, update_time, stop_time, hardware
   </sql>
   <select id="selectByExample" parameterType="com.ontime.pojo.QLoginLimitExample" resultMap="BaseResultMap">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     select
     <if test="distinct">
       distinct
     </if>
-    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from q_login_limit
     <if test="_parameter != null">
@@ -107,55 +86,38 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     select 
     <include refid="Base_Column_List" />
     from q_login_limit
     where limit_id = #{limitId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     delete from q_login_limit
     where limit_id = #{limitId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.ontime.pojo.QLoginLimitExample">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     delete from q_login_limit
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.ontime.pojo.QLoginLimit">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
-    insert into q_login_limit (limit_id, quser_id, login_type_id, 
-      enabled, update_time, stop_time, 
-      hardware)
-    values (#{limitId,jdbcType=INTEGER}, #{quserId,jdbcType=INTEGER}, #{loginTypeId,jdbcType=INTEGER}, 
-      #{enabled,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{stopTime,jdbcType=TIMESTAMP}, 
-      #{hardware,jdbcType=VARCHAR})
+    <selectKey keyProperty="limitId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into q_login_limit (quser_id, login_type_id, enabled, 
+      update_time, stop_time, hardware
+      )
+    values (#{quserId,jdbcType=INTEGER}, #{loginTypeId,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{stopTime,jdbcType=TIMESTAMP}, #{hardware,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ontime.pojo.QLoginLimit">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
+    <selectKey keyProperty="limitId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into q_login_limit
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="limitId != null">
-        limit_id,
-      </if>
       <if test="quserId != null">
         quser_id,
       </if>
@@ -176,9 +138,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="limitId != null">
-        #{limitId,jdbcType=INTEGER},
-      </if>
       <if test="quserId != null">
         #{quserId,jdbcType=INTEGER},
       </if>
@@ -200,20 +159,12 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.ontime.pojo.QLoginLimitExample" resultType="java.lang.Integer">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     select count(*) from q_login_limit
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     update q_login_limit
     <set>
       <if test="record.limitId != null">
@@ -243,10 +194,6 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     update q_login_limit
     set limit_id = #{record.limitId,jdbcType=INTEGER},
       quser_id = #{record.quserId,jdbcType=INTEGER},
@@ -260,10 +207,6 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.ontime.pojo.QLoginLimit">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     update q_login_limit
     <set>
       <if test="quserId != null">
@@ -288,10 +231,6 @@
     where limit_id = #{limitId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ontime.pojo.QLoginLimit">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-18 15:32:38.
-    -->
     update q_login_limit
     set quser_id = #{quserId,jdbcType=INTEGER},
       login_type_id = #{loginTypeId,jdbcType=INTEGER},

@@ -5,22 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 public class QLoginLimitExample {
-    /**
-     * Table: q_login_limit
-    @mbggenerated 2017-05-18 15:32:38
-     */
     protected String orderByClause;
 
-    /**
-     * Table: q_login_limit
-    @mbggenerated 2017-05-18 15:32:38
-     */
     protected boolean distinct;
 
-    /**
-     * Table: q_login_limit
-    @mbggenerated 2017-05-18 15:32:38
-     */
     protected List<Criteria> oredCriteria;
 
     public QLoginLimitExample() {
@@ -76,11 +64,6 @@ public class QLoginLimitExample {
         distinct = false;
     }
 
-    /**
-     * [STRATO MyBatis Generator]
-     * Table: q_login_limit
-    @mbggenerated 2017-05-18 15:32:38
-     */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -553,10 +536,6 @@ public class QLoginLimitExample {
         }
     }
 
-    /**
-     * This class corresponds to the database table q_login_limit
-    @mbggenerated do_not_delete_during_merge 2017-05-18 15:32:38
-     */
     public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {
@@ -564,11 +543,6 @@ public class QLoginLimitExample {
         }
     }
 
-    /**
-     * [STRATO MyBatis Generator]
-     * Table: q_login_limit
-    @mbggenerated 2017-05-18 15:32:38
-     */
     public static class Criterion {
         private String condition;
 

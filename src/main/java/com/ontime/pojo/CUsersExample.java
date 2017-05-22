@@ -5,22 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 public class CUsersExample {
-    /**
-     * Table: c_users
-    @mbggenerated 2017-05-19 15:36:09
-     */
     protected String orderByClause;
 
-    /**
-     * Table: c_users
-    @mbggenerated 2017-05-19 15:36:09
-     */
     protected boolean distinct;
 
-    /**
-     * Table: c_users
-    @mbggenerated 2017-05-19 15:36:09
-     */
     protected List<Criteria> oredCriteria;
 
     public CUsersExample() {
@@ -76,11 +64,6 @@ public class CUsersExample {
         distinct = false;
     }
 
-    /**
-     * [STRATO MyBatis Generator]
-     * Table: c_users
-    @mbggenerated 2017-05-19 15:36:09
-     */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -1163,10 +1146,6 @@ public class CUsersExample {
         }
     }
 
-    /**
-     * This class corresponds to the database table c_users
-    @mbggenerated do_not_delete_during_merge 2017-05-19 15:36:09
-     */
     public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {
@@ -1174,11 +1153,6 @@ public class CUsersExample {
         }
     }
 
-    /**
-     * [STRATO MyBatis Generator]
-     * Table: c_users
-    @mbggenerated 2017-05-19 15:36:09
-     */
     public static class Criterion {
         private String condition;
 

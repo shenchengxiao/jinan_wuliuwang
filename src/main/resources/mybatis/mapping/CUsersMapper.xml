@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ontime.mapper.CUsersMapper">
   <resultMap id="BaseResultMap" type="com.ontime.pojo.CUsers">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     <id column="cu_id" jdbcType="INTEGER" property="cuId" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -24,10 +20,6 @@
     <result column="car_statues" jdbcType="INTEGER" property="carStatues" />
   </resultMap>
   <sql id="Example_Where_Clause">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -57,10 +49,6 @@
     </where>
   </sql>
   <sql id="Update_By_Example_Where_Clause">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -90,23 +78,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     cu_id, username, password, register_time, update_time, cert_name, car_phone, car_type, 
     car_length, car_weight, car_number1, car_number2, remark, admin_id, start_time, car_statues
   </sql>
   <select id="selectByExample" parameterType="com.ontime.pojo.CUsersExample" resultMap="BaseResultMap">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     select
     <if test="distinct">
       distinct
     </if>
-    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from c_users
     <if test="_parameter != null">
@@ -117,61 +96,44 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     select 
     <include refid="Base_Column_List" />
     from c_users
     where cu_id = #{cuId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     delete from c_users
     where cu_id = #{cuId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.ontime.pojo.CUsersExample">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     delete from c_users
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.ontime.pojo.CUsers">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
-    insert into c_users (cu_id, username, password, 
-      register_time, update_time, cert_name, 
-      car_phone, car_type, car_length, 
-      car_weight, car_number1, car_number2, 
-      remark, admin_id, start_time, 
-      car_statues)
-    values (#{cuId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{registerTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{certName,jdbcType=VARCHAR}, 
-      #{carPhone,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR}, #{carLength,jdbcType=DOUBLE}, 
-      #{carWeight,jdbcType=DOUBLE}, #{carNumber1,jdbcType=VARCHAR}, #{carNumber2,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{adminId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{carStatues,jdbcType=INTEGER})
+    <selectKey keyProperty="cuId" order="AFTER" resultType="java.lang.Integer">
+    SELECT LAST_INSERT_ID()
+  </selectKey>
+    insert into c_users (username, password, register_time, 
+      update_time, cert_name, car_phone, 
+      car_type, car_length, car_weight, 
+      car_number1, car_number2, remark, 
+      admin_id, start_time, car_statues
+      )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{certName,jdbcType=VARCHAR}, #{carPhone,jdbcType=VARCHAR}, 
+      #{carType,jdbcType=VARCHAR}, #{carLength,jdbcType=DOUBLE}, #{carWeight,jdbcType=DOUBLE}, 
+      #{carNumber1,jdbcType=VARCHAR}, #{carNumber2,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{adminId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{carStatues,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ontime.pojo.CUsers">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
+    <selectKey keyProperty="cuId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into c_users
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cuId != null">
-        cu_id,
-      </if>
       <if test="username != null">
         username,
       </if>
@@ -219,9 +181,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cuId != null">
-        #{cuId,jdbcType=INTEGER},
-      </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
@@ -270,20 +229,12 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.ontime.pojo.CUsersExample" resultType="java.lang.Integer">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     select count(*) from c_users
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     update c_users
     <set>
       <if test="record.cuId != null">
@@ -340,10 +291,6 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     update c_users
     set cu_id = #{record.cuId,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
@@ -366,10 +313,6 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.ontime.pojo.CUsers">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     update c_users
     <set>
       <if test="username != null">
@@ -421,10 +364,6 @@
     where cu_id = #{cuId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ontime.pojo.CUsers">
-    <!--
-      WARNING - @mbggenerated
-      Generated on 2017-05-19 15:36:09.
-    -->
     update c_users
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

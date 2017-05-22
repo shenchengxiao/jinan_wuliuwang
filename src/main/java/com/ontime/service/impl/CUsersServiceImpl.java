@@ -53,7 +53,7 @@ public class CUsersServiceImpl implements CUsersService{
                 LOG.error("addUserInfo 信息为空",user);
                 return Integer.valueOf(0);
             }
-            int val = userMapper.insertSelective(user);
+            int val = userMapper.insert(user);
             if (val > 0){
                 return user.getCuId();
             }else {
