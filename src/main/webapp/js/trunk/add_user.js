@@ -12,7 +12,7 @@ $(function(){
     });
     
     $('#cancel').on('click',function(){
-      location.href = manage_path+"/api/cuser/query";
+      location.href = whole_path+"/jsp/view/trunk/user_list.jsp";
 
     });
 
@@ -88,12 +88,12 @@ $(function(){
  */
 function addUserInfo(){
     $.ajax({
-        url:manage_path+'/api/cuser/add',
+        url:whole_path+'/api/cuser/add',
         type:'POST',
         dataType:'json',
         data:$('#add_user_info_form').serialize(),
         beforeSend:function(){
-            //$.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
+            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
         },
         success:function(data){
             if(data.status == 0){
@@ -106,56 +106,45 @@ function addUserInfo(){
             }
         },
         complete:function(){
-            //$.progressBar().close();
-        },
-        error:function(XMLHttpRequest,textStatus,errorThrown){
-            //$.toast('服务器未响应,请稍候重试',5000);
-        }
-    });
-}
-
-//校验用户是否已存在
-$("#userName").blur(function(){
-    $.ajax({
-        url:manage_path+'/api/cuser/verify',
-        type:'GET',
-        cache:false,
-        dataType:'json',
-        data:{username:$('#username').val()},
-        beforeSend:function(){
-            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
-        },
-        success:function(data){
-            if(data.status == 0){
-                if (data.data.length > 0) {
-                    var txt = "此用户已存在,请重新输入！";
-                    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
-                    $('#username').val('');
-                }
-            }else {
-                $.toast('操作失败,系统错误',1000);
-            }
-        },
-        complete:function(){
             $.progressBar().close();
         },
         error:function(XMLHttpRequest,textStatus,errorThrown){
             $.toast('服务器未响应,请稍候重试',5000);
         }
     });
+}
+
+//校验用户是否已存在
+$("#username").blur(function(){
+	if($.trim($('#username').val()) != ''){
+		$.ajax({
+	        url:whole_path+'/api/cuser/verify',
+	        type:'GET',
+	        cache:false,
+	        dataType:'json',
+	        data:{username:$('#username').val()},
+	        beforeSend:function(){
+	            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
+	        },
+	        success:function(data){
+	            if(data.status == 0){
+	                if (data.data.length > 0) {
+	                    var txt = "此用户已存在,请重新输入！";
+	                    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+	                    $('#username').val('');
+	                }
+	            }else {
+	                $.toast('操作失败,系统错误',1000);
+	            }
+	        },
+	        complete:function(){
+	            $.progressBar().close();
+	        },
+	        error:function(XMLHttpRequest,textStatus,errorThrown){
+	            $.toast('服务器未响应,请稍候重试',5000);
+	        }
+	    });
+	}
+    
 })
 
-//获取项目路径
-function getRootPath()
-{
-    var pathName = window.location.pathname.substring(1);
-
-    var webName = pathName == '' ? '' : pathName.substring(0,pathName.indexOf('/'));
-
-    var path = window.location.protocol + '//' + window.location.host + '/'+ webName ;
-
-    return path;
-
-}
-//定义路径全局变量
-var manage_path=getRootPath();
