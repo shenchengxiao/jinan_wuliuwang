@@ -4,28 +4,26 @@
 <c:set var="systemTitle" value="按时达管理平台"/>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <head>
-<meta http-equiV="pragma" content="no-cache">
-<meta http-equiV="Cache-Control" content="no-cache, must-revalidate">
-<meta http-equiV="expires" content="0">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="renderer" content="webkit">
-<link href="${ctx }/static/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
-<link href="${ctx }/static/css/font-awesome.min93e3.css" rel="stylesheet">
-<link href="${ctx }/static/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <meta http-equiV="pragma" content="no-cache">
+    <meta http-equiV="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiV="expires" content="0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <link href="${ctx }/static/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
 
-<!-- Morris -->
-<link href="${ctx }/static/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <!-- Morris -->
+    <link href="${ctx }/static/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
 
-<link href="${ctx}/static/css/xcConfirm.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/static/css/xcConfirm.css" rel="stylesheet" type="text/css"/>
 
-<!-- Gritter -->
-<link href="${ctx }/static/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <!-- Gritter -->
+    <link href="${ctx }/static/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
-<link href="${ctx }/static/css/animate.css" rel="stylesheet">
-<link href="${ctx }/static/css/style.css?v=2.2.0" rel="stylesheet">
-<link href="${ctx }/static/js/plugins/layer/skin/layer.css" rel="stylesheet">
-<title>${systemTitle}</title>
+    <link href="${ctx }/static/css/animate.css" rel="stylesheet">
+    <link href="${ctx }/static/css/style.css?v=2.2.0" rel="stylesheet">
+    <link href="${ctx }/static/js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <title>${systemTitle}</title>
 </head>
 
 <!-- Mainly scripts -->
@@ -73,10 +71,10 @@
 <script src="${ctx}/js/common.js"></script>
 
 
-<<style>
-.table th, .table td {
-text-align: center;
-vertical-align: middle!important;
-}
+<style>
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle!important;
+    }
 </style>
 

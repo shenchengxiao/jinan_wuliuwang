@@ -27,8 +27,8 @@
                                 <form id="user_list_form" method="post">
                                     <div class="col-sm-2">
                                         <div align="left">
-                                            <select id="status" name="activityQueryStatus" class="form-control">
-                                                <option value="0" selected>
+                                            <select name="userType" class="form-control">
+                                                <option value="" selected>
                                                     全部
                                                 </option>
                                                 <option value="1">
@@ -41,16 +41,16 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="text" placeholder="请输入用户帐号" name="businessName" class="form-control" >
+                                        <input type="text" placeholder="请输入用户帐号" name="accountName" class="form-control" >
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="text" placeholder="请输入用户姓名" name="businessName" class="form-control" >
+                                        <input type="text" placeholder="请输入用户姓名" name="userName" class="form-control" >
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="text" placeholder="请输入联系电话" name="businessName" class="form-control" >
+                                        <input type="text" placeholder="请输入联系电话" name="phoneNumber" class="form-control" >
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="button" class="btn btn-primary" onclick="searchList();" value="查找">
+                                        <button type="button" class="btn btn-primary" id="btn_search">查找</button>
                                     </div>
                                     <input type="hidden" name="pageNum" id="pageNum" value="1">
                                 </form>
