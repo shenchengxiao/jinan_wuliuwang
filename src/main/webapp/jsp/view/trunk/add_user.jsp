@@ -18,7 +18,7 @@
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
@@ -26,7 +26,7 @@
                                 </li>
                                 <li><a href="form_basic.html#">选项2</a>
                                 </li>
-                            </ul>
+                            </ul> -->
                             <a class="close-link">
                                 <i class="fa fa-times"></i>
                             </a>

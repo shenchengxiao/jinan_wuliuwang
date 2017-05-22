@@ -90,6 +90,7 @@ public class CUserHandler {
             if (request.getCuId() == null) {
             	AuthUser authUser = ActionContext.getActionContext().currentUser();
             	user.setAdminId(authUser.getId().intValue());
+            	user.setAdminName(authUser.getName());
             	user.setRegisterTime(new Date());
             	
             	List<CUsers> cusers = userService.getUser(user);

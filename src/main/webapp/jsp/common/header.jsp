@@ -11,6 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
 <link href="${ctx }/static/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+<link href="${ctx }/static/css/font-awesome.min93e3.css" rel="stylesheet">
+<link href="${ctx }/static/font-awesome/css/font-awesome.css" rel="stylesheet">
 
 <!-- Morris -->
 <link href="${ctx }/static/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
