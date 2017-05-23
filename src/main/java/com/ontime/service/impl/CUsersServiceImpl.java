@@ -102,19 +102,41 @@ public class CUsersServiceImpl implements CUsersService{
 		try {
 			CUsersExample example = new CUsersExample();
 			Criteria criteria = example.createCriteria();
-			if(StringUtils.isNotBlank(user.getUsername())){
-				criteria.andUsernameEqualTo(user.getUsername());
+			if(user != null){
+				if(user.getCuId() != null){
+					criteria.andCuIdEqualTo(user.getCuId());
+				}
+				if(StringUtils.isNotBlank(user.getUsername())){
+					criteria.andUsernameEqualTo(user.getUsername());
+				}
+				
+				if(StringUtils.isNotBlank(user.getCertName())){
+					criteria.andCertNameEqualTo(user.getCertName());
+				}
+				
+				if(StringUtils.isNotBlank(user.getCarPhone())){
+					criteria.andCarPhoneLike("%"+user.getCarPhone()+"%");
+				}
 			}
 			
-			if(StringUtils.isNotBlank(user.getCertName())){
-				criteria.andCertNameEqualTo(user.getCertName());
+			List<CUsers> cuserList = userMapper.selectByExample(example);
+			if(cuserList != null && cuserList.size()>0){
+				for(CUsers cu : cuserList){
+					
+					QLoginLimitExample qexample = new QLoginLimitExample();
+					com.ontime.pojo.QLoginLimitExample.Criteria qc = qexample.createCriteria();
+					qc.andQuserIdEqualTo(cu.getCuId());
+					qc.andIsCarEqualTo(1);
+					List<QLoginLimit> loginLismitList = limitMapper.selectByExample(qexample);
+					if(loginLismitList != null && loginLismitList.size()>0){
+						cu.setLoginType(loginLismitList.get(0).getLoginTypeId());
+						cu.setStopTime(loginLismitList.get(0).getStopTime());
+					}
+					
+				}
 			}
 			
-			if(StringUtils.isNotBlank(user.getCarPhone())){
-				criteria.andCarPhoneLike("%"+user.getCarPhone()+"%");
-			}
-			
-			return userMapper.selectByExample(example);
+			return cuserList;
 
 		} catch (Throwable e) {
 	        LOG.error("getUser 异常",user);
@@ -175,7 +197,7 @@ public class CUsersServiceImpl implements CUsersService{
 	    	limit.setStopTime(request.getStopTime());
 	    	
 	        //判断ID是否为空，是则添加，否则更新
-	        if (request.getCuId() == null) {
+	        if (request.getId() == null) {
 	
 	            Integer id = userMapper.insert(user);
 	
@@ -190,7 +212,7 @@ public class CUsersServiceImpl implements CUsersService{
 	        	userMapper.updateByPrimaryKeySelective(user);
 	
 	            //修改绑定信息
-	    		limit.setQuserId(request.getCuId());
+	    		limit.setQuserId(request.getId());
 	    		QLoginLimitExample example = new QLoginLimitExample();
 	            com.ontime.pojo.QLoginLimitExample.Criteria criteria = example.createCriteria();
 	            criteria.andQuserIdEqualTo(limit.getQuserId());

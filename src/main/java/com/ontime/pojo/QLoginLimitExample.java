@@ -534,6 +534,66 @@ public class QLoginLimitExample {
             addCriterion("hardware not between", value1, value2, "hardware");
             return (Criteria) this;
         }
+
+        public Criteria andIsCarIsNull() {
+            addCriterion("is_car is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarIsNotNull() {
+            addCriterion("is_car is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarEqualTo(Integer value) {
+            addCriterion("is_car =", value, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarNotEqualTo(Integer value) {
+            addCriterion("is_car <>", value, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarGreaterThan(Integer value) {
+            addCriterion("is_car >", value, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_car >=", value, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarLessThan(Integer value) {
+            addCriterion("is_car <", value, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarLessThanOrEqualTo(Integer value) {
+            addCriterion("is_car <=", value, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarIn(List<Integer> values) {
+            addCriterion("is_car in", values, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarNotIn(List<Integer> values) {
+            addCriterion("is_car not in", values, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarBetween(Integer value1, Integer value2) {
+            addCriterion("is_car between", value1, value2, "isCar");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCarNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_car not between", value1, value2, "isCar");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

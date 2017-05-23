@@ -18,6 +18,8 @@ public class QLoginLimit extends BaseEntity {
 
     private String hardware;
 
+    private Integer isCar;
+
     public Integer getLimitId() {
         return limitId;
     }
@@ -74,6 +76,14 @@ public class QLoginLimit extends BaseEntity {
         this.hardware = hardware == null ? null : hardware.trim();
     }
 
+    public Integer getIsCar() {
+        return isCar;
+    }
+
+    public void setIsCar(Integer isCar) {
+        this.isCar = isCar;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -92,7 +102,8 @@ public class QLoginLimit extends BaseEntity {
             && (this.getEnabled() == null ? other.getEnabled() == null : this.getEnabled().equals(other.getEnabled()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
             && (this.getStopTime() == null ? other.getStopTime() == null : this.getStopTime().equals(other.getStopTime()))
-            && (this.getHardware() == null ? other.getHardware() == null : this.getHardware().equals(other.getHardware()));
+            && (this.getHardware() == null ? other.getHardware() == null : this.getHardware().equals(other.getHardware()))
+            && (this.getIsCar() == null ? other.getIsCar() == null : this.getIsCar().equals(other.getIsCar()));
     }
 
     @Override
@@ -106,6 +117,7 @@ public class QLoginLimit extends BaseEntity {
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         result = prime * result + ((getStopTime() == null) ? 0 : getStopTime().hashCode());
         result = prime * result + ((getHardware() == null) ? 0 : getHardware().hashCode());
+        result = prime * result + ((getIsCar() == null) ? 0 : getIsCar().hashCode());
         return result;
     }
 }

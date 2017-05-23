@@ -5,6 +5,8 @@
 
 <generatorConfiguration>
 
+	<classPathEntry location="D:\repository\mysql\mysql-connector-java\5.1.32\mysql-connector-java-5.1.32.jar" /> 
+
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
@@ -19,20 +21,20 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.ontime.pojo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.ontime.pojo" targetProject="ontime_come/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
             <property name="rootClass" value="com.ontime.request.BaseEntity"/>
             <property name="javaExampleTargetPackage" value="com.ontime.criteria"/>
-            <property name="javaExampleTargetProject" value="src/main/java"/>
+            <property name="javaExampleTargetProject" value="ontime_come/src/main/java"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="mybatis.mapping" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mybatis.mapping" targetProject="ontime_come/src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ontime.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ontime.mapper" targetProject="ontime_come/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -43,13 +45,13 @@
             <!--<columnOverride column="be_used" javaType="com.ontime.enums.YesNoEnum"/>-->
         <!--</table>-->
 
-        <table tableName="c_users">
+        <!-- <table tableName="c_users">
             <generatedKey column="cu_id" sqlStatement="Mysql" type="post" identity="true"/>
-        </table>
+        </table> -->
 
-        <!--<table tableName="q_login_limit">-->
-            <!--<generatedKey column="limit_id" sqlStatement="Mysql" type="post" identity="true"/>-->
-        <!--</table>-->
+        <table tableName="q_login_limit">
+            <generatedKey column="limit_id" sqlStatement="Mysql" type="post" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>

@@ -71,6 +71,7 @@ public class CUserHandler {
         //车主基本信息
         try {
         	CUsers user = new CUsers();
+        	user.setCuId(request.getId());
         	user.setUsername(request.getUsername());
         	user.setCarLength(request.getCarLength());
         	user.setCarWeight(request.getCarWeight());
@@ -87,7 +88,7 @@ public class CUserHandler {
         	limit.setStopTime(request.getStopTime());
         	
             //判断ID是否为空，是则添加，否则更新
-            if (request.getCuId() == null) {
+            if (request.getId() == null) {
             	AuthUser authUser = ActionContext.getActionContext().currentUser();
             	user.setAdminId(authUser.getId().intValue());
             	user.setAdminName(authUser.getName());
@@ -101,6 +102,7 @@ public class CUserHandler {
                 if(id > 0){
                 	limit.setQuserId(id);
                 	limit.setEnabled(1);
+                	limit.setIsCar(1);
                 	userService.insertLimit(limit);
                 }
                 
@@ -110,7 +112,7 @@ public class CUserHandler {
             	boolean result = userService.update(user);
                 //修改绑定信息
             	if(result){
-            		limit.setQuserId(request.getCuId());
+            		limit.setQuserId(request.getId());
             		limit.setUpdateTime(new Date());
             		userService.updateLimit(limit);
             	}

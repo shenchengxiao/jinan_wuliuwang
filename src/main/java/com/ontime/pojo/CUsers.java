@@ -35,6 +35,10 @@ public class CUsers extends BaseEntity {
     private String adminName;
 
     private Date startTime;
+    
+    private Integer loginType;
+    
+    private Date stopTime;
 
     private Integer carStatues;
 
@@ -173,8 +177,24 @@ public class CUsers extends BaseEntity {
     public void setCarStatues(Integer carStatues) {
         this.carStatues = carStatues;
     }
+    
+    public Integer getLoginType() {
+		return loginType;
+	}
 
-    @Override
+	public void setLoginType(Integer loginType) {
+		this.loginType = loginType;
+	}
+
+	public Date getStopTime() {
+		return stopTime;
+	}
+
+	public void setStopTime(Date stopTime) {
+		this.stopTime = stopTime;
+	}
+
+	@Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;

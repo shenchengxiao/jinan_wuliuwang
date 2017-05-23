@@ -12,7 +12,7 @@ $(function(){
     });
     
     $('#cancel').on('click',function(){
-      location.href = whole_path+"/jsp/view/trunk/user_list.jsp";
+      location.href = whole_path+"/view/trunk/user_list.jsp";
 
     });
 
@@ -30,7 +30,7 @@ $(function(){
 
     $('#add_user_info_form').validate({
         errorElement:'span',
-        errorClass:'help-block',
+        errorClass:'error',
         focusInvalid:false,
         ignore:'',
         rules:{
@@ -63,13 +63,13 @@ $(function(){
         },
         highlight:function(element){
             $(element).closest('.help-inline').removeClass('ok');
-            $(element).closest('.control-group').removeClass('success').addClass('error');
+            $(element).closest('.form-group').removeClass('success').addClass('error');
         },
         unhighlight:function(element){
-            $(element).closest('.control-group').removeClass('error');
+            $(element).closest('.form-group').removeClass('error');
         },
         success:function(label){
-            label.addClass('valid').addClass('help-inline ok').closest('.control-group').removeClass('error').addClass('success');
+            label.addClass('valid').addClass('help-inline ok').closest('.form-group').removeClass('error').addClass('success');
         },
         submitHandler:function(form){
             $('.alert-success').show();
@@ -83,7 +83,7 @@ $(function(){
 /**
  *  功能描述：添加用户
  *  请求方式：POST
- *  请求地址：/api/user_manage/edit_user
+ *  请求地址：/api/cuser/add
  *  函数名称：addUserInfo
  */
 function addUserInfo(){

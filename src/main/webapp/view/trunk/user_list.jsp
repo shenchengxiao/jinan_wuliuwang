@@ -42,7 +42,7 @@
                                 </form>
                                 <div class="col-sm-2">
                                     <div align="right">
-                                        <a class="btn btn-info btn-rounded" href="${ctx}/jsp/view/trunk/add_user.jsp">添加用户</a>
+                                        <a class="btn btn-info btn-rounded" href="${ctx}/view/trunk/add_user.jsp">添加用户</a>
                                     </div>
                                 </div>
                             </div>

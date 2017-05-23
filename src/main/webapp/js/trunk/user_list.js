@@ -11,198 +11,6 @@ $(function(){
             $("#btn_search").click();
         }
     });
-    
-    
-    var clicknum = 1;
-    var idsArr  = [];
-    //ids 传递ids的集合对象
-    function setIdsInfo(){
-        var arrId = [];
-        $.each(idsArr,function(index,item){
-            var IDs = {
-                id:item
-            };
-            arrId.push(IDs);
-        });
-
-        var json = JSON.stringify(arrId);
-        $('#ids').val(json);
-    }
-
-
-
-    //全选||非全选
-    $('#btn_chooseAll').on('click',function(){
-        if(clicknum%2){    
-            //第一次点击
-            $('input[name="idArr"]').each(function(i){
-                idsArr.push($(this).val());
-            });
-            setIdsInfo();
-            console.log(idsArr);
-            $('#btn_chooseAll').text('取消全选');
-            $('input[name="chooseTag"]').prop({
-                checked: 'checked'
-            }).parent().css({
-                color:'green'
-            });
-        }else{
-            //第二次点击
-            idsArr.length=0;
-            setIdsInfo();
-            $('#btn_chooseAll').text('全选');
-            $('input[name="chooseTag"]').prop({
-                checked: ''
-            }).parent().css({
-                color:'#000'
-            });
-            console.log(idsArr);
-        }
-        clicknum++; 
-    });
-
-
-    //绑定所有tbody下的tr,不包括最后一列
-    $('#user_manage_list tbody').on('click','tr td:not(:last-child)',function(){
-        //找到本列本行其它列
-        var check = $(this).parent().find("input[type='checkbox']");
-        var thisID = $(this).parent().find("input[name=idArr]").val();
-        if(check){
-            var flag = check[0].checked;
-            if(flag){
-                check[0].checked = false;
-                removeInArr(thisID);
-                $(this).parent().find("td").css({
-                        backgroundColor: ''
-                    })
-                setIdsInfo();
-            }else{
-                check[0].checked = true;
-                idsArr.push(thisID);
-                $(this).parent().find("td").css({
-                    backgroundColor: '#bee4ca'
-                 })
-                setIdsInfo();
-
-            }
-        }
-
-    });
-
-
-    //防止冒泡事件
-    $('#user_manage_list tbody').on('click','input[name="chooseTag"]',function(event) {
-        event.stopImmediatePropagation();
-        var thisID = $(this).next('input').val();
-        if($(this).is(':checked')){
-            idsArr.push(thisID);
-            setIdsInfo();
-            $(this).parent().parent().find("td").css({
-                backgroundColor: '#bee4ca'
-            })
-        }else{
-            removeInArr(thisID);
-            setIdsInfo();
-            $(this).parent().parent().find("td").css({
-                backgroundColor: ''
-            })
-        }
-    })
-
-
-
-    //查找某个值在数组中的位置
-    function indexOfInArr(val) {
-        for (var i = 0; i < idsArr.length; i++) {
-            if (idsArr[i] == val) return i;
-        }
-        return -1;
-    };
-
-    //定义一个remove的方法
-    function removeInArr(val) {
-        var index = indexOfInArr(val);
-        if (index > -1) {
-            idsArr.splice(index, 1);
-        }
-    };
-
-
-  //创建modal弹出层 发布消息
-    $('#btn_send').on('click',function(){
-    	if(idsArr == null || idsArr.length == 0){
-            alert("请先选择用户");
-    	}else{
-            clearModal();//清空modal弹出层里面的参数；
-            $('#sendUserMessageModal').modal('show');//modle层显示
-    	}
-    	
-    });
-
-    $('#btn_send_usermessage').on('click',function(){
-        //非空验证
-        var b = $('#send_usermessagee_form').valid();//true false
-        if(b){
-        	sendsysmessage();
-            $('#sendUserMessageModal').modal('hide');//modle层隐藏
-        }else{
-            return false;
-        }
-    });
-    
-    $('#btn_clear').on('click',function(){
-    	
-    	$("#content").val("");
-    });
-
-
-    //创建modal弹出层 重置密码
-    $('#btn_password').on('click',function(){
-        //判断是否选中用户且只能选择一个用户
-        if(idsArr == null || idsArr.length == 0 ){
-            alert("请先选择一个用户");
-        }else if (idsArr.length > 1){
-            alert("暂不支持批量修改");
-        }else {
-            for(var i=0;i<idsArr.length;i++) {
-                var id = idsArr[i];
-                getUserDetail(id);
-            }
-            clearModal();
-            $('#resetPasswordModal').modal('show');//modle层显示
-        }
-    });
-
-    //提交重置信息
-    $('#btn_reset_password').on('click',function(){
-        //非空验证
-        var flag = $('#reset_password_form').valid();//true false
-        if(flag){
-            resetUserInfo();
-            $('#resetPasswordModal').modal('hide');//modle层隐藏
-        }else{
-            return false;
-        }
-    });
-
-
-    //创建modal弹出层 修改到期时间
-    $('#btn_postpone').on('click',function(){
-        //判断是否选中用户且只能选择一个用户
-        if(idsArr == null || idsArr.length == 0 ){
-            alert("请先选择一个用户");
-        }else if (idsArr.length > 1){
-            alert("暂不支持批量修改");
-        }else {
-            for(var i=0;i<idsArr.length;i++) {
-                var id = idsArr[i];
-                getExpireDate(id);
-            }
-            clearModal();
-            $('#resetExpireDateModal').modal('show');//modle层显示;
-        }
-    });
-
 
     //提交修改日期信息
     $('#btn_reset_expireDate').on('click',function(){
@@ -327,31 +135,6 @@ $(function(){
 
 });
 
-function sendsysmessage(){
-    $.ajax({
-        url:manage_path+'/api/message/send',
-        type:'POST',
-        dataType:'json',
-        data:$('#send_usermessagee_form').serialize(),
-        beforeSend:function(){
-            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
-        },
-        success:function(data){
-            if(data.status == 0){
-                $.toast('发送成功',5000);
-                location.reload();
-            }else{
-            	$.toast('发送失败',5000);
-            }
-        },
-        complete:function(){
-            $.progressBar().close();
-        },
-        error:function(XMLHttpRequest,textStatus,errorThrown){
-            $.toast('服务器未响应,请稍候重试',5000);
-        }
-    });
-}
 
 //清空modal里面的参数
 function clearModal(){
@@ -392,47 +175,15 @@ function getUserList(){
                 if (list != null && list.length>0){
                     var operation, upDown = ''; //操作按钮
                     $.each(list, function (index, item) {
-                       /* var platform = item.platformType;
-                        switch (platform){
-                            case 0:
-                                platform = 'windows'
-                                break;
-                            case 1:
-                                platform = 'iOS'
-                                break;
-                            case 2:
-                                platform = 'Andoird'
-                                break;
-                        }
-                        var enabled = item.isAbled;//banner状态
-                        if (enabled == 0) {
-                            enabled = "无效";
-                            upDown = ' <a href="#" class="btn mini green" data-toggle="tooltip" data-placement="top" title="启用" onclick="modifyStatus(' + item.id + ',1)"><i class="icon-ok-circle"></i></a>';
-                        } else {
-                            enabled = "有效";
-                            upDown = ' <a href="#" class="btn mini grey" data-toggle="tooltip" data-placement="top" title="禁用" onclick="modifyStatus(' + item.id + ',0)"><i class="icon-ban-circle"></i></a>';
-                        }*/
 
                         var Deleted ='<a href="user_detail.jsp?id='+item.id+'" class="btn mini purple" data-toggle="tooltip" data-placement="top" title="查看" ><i class="icon-tasks"></i></a>&nbsp;'
 
                         var push ='<a href="user_push.jsp?id='+item.id+'" class="btn yellow mini" data-toggle="tooltip" data-placement="top" title="发布" ><i class="icon-hand-right"></i></a>&nbsp;'
 
                         var citylist ='<a href="city_list.jsp?id='+item.id+'" class="btn blue mini" data-toggle="tooltip" data-placement="top" title="定制城市" ><i class="icon-globe"></i></a>&nbsp;'
-
-
-                        /*var hardNum = item.hardNum.toString();
-                        if (hardNum.length > 10 && hardNum != 0){
-                            hardNum = hardNum.substring(0,7)+"...";
-                        }else {
-                            hardNum
-                        }*/
-
-                        //操作按钮拼接
-                        /*operation = ' <a href="user_edit.jsp?id='+item.cuId+'" id="btn_edit" class="btn blue mini" data-toggle="tooltip" data-placement="top" title="编辑" ><i class="icon-edit icon-white"></i></a> '
-                        	+ Deleted + push + citylist;*/
                         
-                        operation = '<a href="user_edit.jsp?id='+item.cuId+'">查看</a>&nbsp;&nbsp;&nbsp;'
-                        +'<a href="user_edit.jsp?id='+item.cuId+'">编辑</a>&nbsp;&nbsp;&nbsp;'
+                        operation = '<a href="detail_user.jsp?id='+item.cuId+'">查看</a>&nbsp;&nbsp;&nbsp;'
+                        +'<a href="edit_user.jsp?id='+item.cuId+'">编辑</a>&nbsp;&nbsp;&nbsp;'
                         +'<a href="user_edit.jsp?id='+item.cuId+'">解绑</a>&nbsp;&nbsp;&nbsp;'
                         +'<a href="user_edit.jsp?id='+item.cuId+'">修改使用时间</a>';
 

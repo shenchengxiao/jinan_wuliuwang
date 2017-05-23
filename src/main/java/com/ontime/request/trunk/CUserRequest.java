@@ -8,7 +8,7 @@ import com.ontime.request.BaseQuery;
 
 public class CUserRequest extends BaseQuery {
 	
-	private Integer cuId;
+	private Integer id;
 	private String username;
 	private String password;
 	private String certName;
@@ -22,11 +22,12 @@ public class CUserRequest extends BaseQuery {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date stopTime;
 	private Integer loginType;
-	public Integer getCuId() {
-		return cuId;
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setCuId(Integer cuId) {
-		this.cuId = cuId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;
