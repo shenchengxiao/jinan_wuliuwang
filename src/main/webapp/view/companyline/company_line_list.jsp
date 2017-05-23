@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<jsp:include page="/jsp/common/header.jsp"/>
+<jsp:include page="/common/header.jsp"/>
 <body>
 <div id="wrapper">
     <jsp:include page="/left.jsp"/>
@@ -10,7 +10,7 @@
                 <h2>企业与专线管理</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="../../../main.jsp">主页</a>
+                        <a href="../../main.jsp">主页</a>
                     </li>
                     <li>
                         <strong>企业与专线管理</strong>
@@ -56,7 +56,7 @@
                                 </form>
                                 <div class="col-sm-2">
                                     <div align="right">
-                                        <a class="btn btn-info btn-rounded" href="${ctx}/api/web/to/addto?type=0">添加用户</a>
+                                        <a class="btn btn-info btn-rounded" href="company_line_add.jsp">添加用户</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,4 +95,4 @@
 </div>
 </div>
 </body>
-<script src="../../../js/companyline/company_line_list.js"></script>
+<script src="../../js/companyline/company_line_list.js"></script>

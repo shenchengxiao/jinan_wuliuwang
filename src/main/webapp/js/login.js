@@ -72,6 +72,9 @@ function login(){
         type: 'POST',
         dataType: 'json',
         data:$('#user_login_form').serialize(),
+        beforeSend:function(data){
+            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCancel:true});
+        },
         success:function(data) {
             if(data.status == 0){
                 window.location.href =whole_path+'/main.jsp';

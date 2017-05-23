@@ -12,16 +12,16 @@
             <li>
                 <a href="#"><i class="fa fa-columns"></i> <span class="nav-label">用户管理 </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${ctx}/jsp/view/trunk/user_list.jsp">车主管理</a>
+                    <li><a href="${ctx}/view/trunk/user_list.jsp">车主管理</a>
                     </li>
-                    <li><a href="${ctx}/jsp/view/companyline/company_line_list.jsp">企业与专线管理</a>
+                    <li><a href="${ctx}/view/companyline/company_line_list.jsp">企业与专线管理</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#"><i class="fa fa-columns"></i> <span class="nav-label">系统管理 </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${ctx}/jsp/view/trunk/user_list.jsp">帐号列表</a>
+                    <li><a href="${ctx}/view/trunk/user_list.jsp">帐号列表</a>
                     </li>
                 </ul>
             </li>

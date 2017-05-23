@@ -45,7 +45,7 @@ var login_name;
     if(!user.isAuthenticated && location.href.indexOf('/login.jsp')<0 && location.href.indexOf('/main.jsp')>0){
         location.href="login.jsp";
     } else if (!user.isAuthenticated && location.href.indexOf('/login.jsp')<0){
-        location.href="../../../login.jsp";
+        location.href="../../login.jsp";
     }
 })();
 

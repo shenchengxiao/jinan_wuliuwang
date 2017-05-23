@@ -29,7 +29,7 @@ function getUserList(){
         cache:false,
         data: $('#user_list_form').serialize(),
         beforeSend:function(data){
-            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCancel:true,position:'center'});
+            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCancel:true});
         },
         success:function(data){
             if(data.status == 0) {
@@ -66,7 +66,7 @@ function getUserList(){
 
                 }else{
                     $.toast("没有查到数据",3000);
-                    $('#user_manage_list tbody').html('');
+                    $('#company_line_list tbody').html('');
                     if($('#pagination').html().length > 0){
                         $('#pagination').jqPaginator('destroy');
                     }
