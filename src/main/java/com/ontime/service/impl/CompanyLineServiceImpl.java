@@ -66,7 +66,7 @@ public class CompanyLineServiceImpl implements CompanyLineService{
                 LOG.error("updateQUsersInfo 信息为空",qUsers);
                 return false;
             }
-            int val = qUsersMapper.updateByPrimaryKey(qUsers);
+            int val = qUsersMapper.updateByPrimaryKeySelective(qUsers);
             return (val>0)?true:false;
         } catch (Throwable e) {
             LOG.error("updateQUsersInfo 异常",e);

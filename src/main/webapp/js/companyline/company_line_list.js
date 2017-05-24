@@ -48,9 +48,10 @@ function getUserList(){
                                 user_type = '专线版'
                                 break;
                         }
+                        console.log(item.quId );
                         unbind = ' <a href="#" class="btn-sm btn-warning btn-rounded"  onclick="modifyStatus_stick('+item.id+','+item.adType+',1)">解绑</a> ';
                         modifyTime = ' <a href="#" class="btn-sm btn-danger btn-rounded"  onclick="modifyStatus_stick('+item.id+','+item.adType+',1)">修改时间</a> ';
-                        operation = ' <a href="#" class="btn-sm btn-info btn-rounded"  onclick="modifyStatus_stick('+item.id+','+item.adType+',1)">编辑</a> <a href="javascript:;" id="btn_edit" class="btn-sm btn-primary btn-rounded" data-toggle="tooltip" data-placement="top" title="编辑" onclick="editBanner('+item.id+','+item.adType+')">查看</a> '+ unbind+modifyTime;
+                        operation = ' <a href="company_line_edit.jsp?id='+item.quId+'" class="btn-sm btn-info btn-rounded">编辑</a> <a href="javascript:;" id="btn_edit" class="btn-sm btn-primary btn-rounded">查看</a> ';
 
                         temp += '<tr>'
                             + '<td data-title="帐号">' + item.userName + '</td>'

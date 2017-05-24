@@ -21,7 +21,7 @@
             <li>
                 <a href="#"><i class="fa fa-columns"></i> <span class="nav-label">系统管理 </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="${ctx}/view/trunk/user_list.jsp">帐号列表</a>
+                    <li><a href="${ctx}/view/admin/admin_list.jsp">帐号列表</a>
                     </li>
                 </ul>
             </li>

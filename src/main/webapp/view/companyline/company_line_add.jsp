@@ -24,7 +24,15 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <form class="form-horizontal" id="comp_line_form" >
-
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">用户类型<span class="required">*</span></label>
+                                <div class="col-lg-8">
+                                    <select class="form-control" name="userTypeId" >
+                                        <option value="1" selected>企业版</option>
+                                        <option value="2">专线版</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">帐号<span class="required">*</span></label>
                                 <div class="col-lg-8">
@@ -101,13 +109,13 @@
                                               name="remark"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">用户类型<span class="required">*</span></label>
-                                <div class="col-lg-8">
-                                    <input type="radio" value="1" name="userTypeId" checked>企业版
-                                    <input type="radio" value="2" name="userTypeId">专线版
-                                </div>
-                            </div>
+                            <%--<div class="form-group">--%>
+                                <%--<label class="col-lg-3 control-label">用户类型<span class="required">*</span></label>--%>
+                                <%--<div class="col-lg-8">--%>
+                                    <%--<input type="radio" value="1" name="userTypeId" checked>企业版--%>
+                                    <%--<input type="radio" value="2" name="userTypeId">专线版--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-8">
                                     <button class="btn btn-primary" id="btn_comp_line" type="submit">添加</button>

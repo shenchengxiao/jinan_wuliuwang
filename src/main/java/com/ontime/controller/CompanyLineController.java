@@ -9,6 +9,7 @@ import com.ontime.response.QuserResponse;
 import com.ontime.utils.APIResponse;
 import com.ontime.utils.Page;
 import com.ontime.utils.YCSystemStatusEnum;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -71,6 +72,30 @@ public class CompanyLineController {
             apiResponse.setData(page);
         } catch (Throwable e) {
             LOG.error("获取企业和专线用户发生异常",qUsersRequest);
+            apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
+        }
+        return apiResponse;
+    }
+
+    /**
+     * 获取企业和专线用户详情信息
+     * @param request
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/detail" ,method = RequestMethod.GET)
+    public APIResponse<QUsers> detail(HttpServletRequest request , Integer id){
+        APIResponse<QUsers> apiResponse = new APIResponse<>();
+        QUsers qUsers = null;
+        try {
+            qUsers = companyLineHandler.fetchQusersDetail(id);
+            apiResponse.setStatus(BusinessStatusEnum.SUCCESS.getCode());
+            apiResponse.setMsg(BusinessStatusEnum.SUCCESS.getDesc());
+            apiResponse.setData(qUsers);
+        } catch (Throwable e) {
+            LOG.error("获取企业和专线用户详情信息发生异常",id);
             apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
             apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
         }

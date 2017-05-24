@@ -32,6 +32,11 @@ public class CompanyLineHandler {
     @Resource
     private CompanyLineService companyLineService;
 
+    /**
+     * 添加修改
+     * @param qUsers
+     * @throws YCException
+     */
     public void addCompanyLineUser(QUsers qUsers) throws YCException {
         /** 参数校验 */
         Validator.isEmpty(qUsers, BusinessStatusEnum.PARAM_EMPTY);
@@ -85,6 +90,23 @@ public class CompanyLineHandler {
             return page;
         } catch (DatabaseException e) {
             LOG.error("fetchQuserInfoPage exception",qUsersRequest);
+            throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
+        }
+    }
+
+    /**
+     * 获取用户详情
+     * @param id
+     * @return
+     * @throws YCException
+     */
+    public QUsers fetchQusersDetail(Integer id) throws YCException {
+        Validator.isEmpty(id,"用户主键ID不能为空");
+        try {
+            QUsers qUsers = companyLineService.fetchQUsersDetail(id);
+            return qUsers;
+        } catch (DatabaseException e) {
+            LOG.error("fetchQusersDetail exception",id);
             throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
         }
     }
