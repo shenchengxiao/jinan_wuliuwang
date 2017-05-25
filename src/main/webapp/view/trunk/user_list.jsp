@@ -39,6 +39,7 @@
                                     <div class="col-sm-2">
                                         <input type="button" class="btn btn-primary" id="btn_search" value="查找">
                                     </div>
+                                    <input type="hidden" name="pageNum" id="pageNum" value="1">
                                 </form>
                                 <div class="col-sm-2">
                                     <div align="right">
@@ -76,6 +77,79 @@
                 </div>
             </div>
         </div>
+        </div>
+    </form>
+        <!-- model -->
+		<div class="modal fade" id="unbundle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							解绑
+						</h4>
+					</div>
+					<div class="modal-body">
+                          <table  id="limit_list" class="table table-striped table-bordered table-hover dataTables-example">
+                              <thead>
+                              <tr>
+                                  <th>登录类型</th>
+                                  <th>到期时间</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                          </table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal -->
+		
+		<!-- model -->
+		<div class="modal fade" id="updateTime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							修改时间
+						</h4>
+					</div>
+					<div class="modal-body">
+                          <table  id="update_time_list" class="table table-striped table-bordered table-hover dataTables-example">
+                              <thead>
+                              <tr>
+                                  <th>登录类型</th>
+                                  <th>允许登录</th>
+                                  <th>到期时间</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                          </table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<!-- <button type="button" class="btn btn-primary" onclick="updateLimit();">
+							提交
+						</button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal -->
         <jsp:include page="/footer.jsp"/>
     </div>
 </div>

@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <form class="form-horizontal" id="add_user_info_form" >
-
+							<input type="hidden" name="id" >
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">帐号<span class="required">*</span></label>
                                 <div class="col-lg-8">
@@ -51,12 +51,12 @@
                                     <input type="text" placeholder="请输入联系电话" class="form-control" name="carPhone" >
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-lg-3 control-label">登录类型：</label>
                                 <div class="col-lg-8">
                                 	<select class="form-control m-b" name="loginType" id="loginType">
-                                        <option value="1">Android</option>
-                                        <option value="2">IOS</option>
+                                        <option value="2">Android</option>
+                                        <option value="1">IOS</option>
                                     </select>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                 <div class="col-lg-8">
                                 	<input id="stopTime" placeholder="请输入到期时间" name="stopTime" class="laydate-icon form-control layer-date"><br>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">车长：</label>
                                 <div class="col-lg-8">
@@ -107,7 +107,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-8">
-                                    <button class="btn btn-primary" id="save_from" type="submit">添加</button>
+                                    <button class="btn btn-primary" id="save_from" type="submit">保存</button>
                                     <button class="btn btn-white" type="button" id="cancel">取消</button>
                                 </div>
                             </div>

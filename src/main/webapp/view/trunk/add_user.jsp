@@ -51,21 +51,13 @@
                                     <input type="text" placeholder="请输入联系电话" class="form-control" name="carPhone" >
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">登录类型：</label>
-                                <div class="col-lg-8">
-                                	<select class="form-control m-b" name="loginType" id="loginType">
-                                        <option value="1">Android</option>
-                                        <option value="2">IOS</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-lg-3 control-label">到期时间：<span class="required">*</span></label>
                                 <div class="col-lg-8">
-                                	<input id="stopTime" placeholder="请输入到期时间" name="stopTime" class="laydate-icon form-control layer-date"><br>
+                                	
+                                	
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">车长：</label>
                                 <div class="col-lg-8">
@@ -106,6 +98,29 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-lg-3 control-label"></label>
+                                <div class="col-lg-8">
+                                	<input type="checkbox" value="2" name="aloginType" id="aloginType">&nbsp;&nbsp;Android&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input id="astopTime" placeholder="请输入Android到期时间" name="astopTime" class="laydate-icon form-control layer-date">
+                                	<!-- <select class="form-control m-b" name="loginType" id="loginType">
+                                        <option value="2">Android</option>
+                                        <option value="1">IOS</option>
+                                    </select> -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label"></label>
+                                <div class="col-lg-8">
+                                    <input type="checkbox" value="1" name="iloginType" id="iloginType">&nbsp;&nbsp;IOS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                	&nbsp;&nbsp;
+                                	<input id="istopTime" placeholder="请输入IOS到期时间" name="istopTime" class="laydate-icon form-control layer-date">
+                                	<!-- <select class="form-control m-b" name="loginType" id="loginType">
+                                        <option value="2">Android</option>
+                                        <option value="1">IOS</option>
+                                    </select> -->
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-8">
                                     <button class="btn btn-primary" id="save_from" type="submit">添加</button>
                                     <button class="btn btn-white" type="button" id="cancel">取消</button>
@@ -125,7 +140,8 @@
     </div>
 </div>
     <script type="text/javascript">
-    laydate({elem:"#stopTime",event:"focus"});
+    laydate({elem:"#astopTime",event:"focus"});
+    laydate({elem:"#istopTime",event:"focus"});
     </script>
 <script src="${ctx}/js/trunk/add_user.js"></script>
 </body>

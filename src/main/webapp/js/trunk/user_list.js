@@ -150,6 +150,154 @@ function clearModal(){
 
 }
 
+function modifyStatus_stick(userId){
+	getUserLimit(userId);
+}
+
+/**
+ * 解绑列表
+ * @param userId
+ */
+function getUserLimit(userId){
+    $.ajax({
+        url: whole_path+'/api/cuser/limitlist',
+        type: 'GET',
+        dataType: 'json',
+        cache:false,
+        data: {quserId:userId,enabled:1},
+        beforeSend:function(data){
+            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCancel:true});
+        },
+        success:function(data){
+            if(data.status == 0) {
+                var json = data.data;
+                var list = json;
+                var temp = "";
+                if (list != null && list.length>0){
+                    var operation = ''; //操作按钮
+                    var loginType = '';
+                    $.each(list, function (index, item) {
+
+                        operation = '<a class="btn-sm btn-warning btn-rounded" href="#" onclick="modifyStatus('+item.limitId+');">解绑</a>';
+
+                        if(item.loginTypeId == 1){
+                        	loginType = 'IOS';
+                        }else{
+                        	loginType = 'Android';
+                        }
+                        
+                        temp += '<tr class="gradeA">'
+                            + '<td data-title="登录类型">' + loginType + '</td>'
+                            + '<td data-title="到期时间">' + timeFormat(item.stopTime) + '</td>'
+                            + '<td data-title="操作">' + operation + '</td>'
+                            + '</tr>';
+                    })
+                    $('#limit_list tbody').html(temp);
+                    //page('#pagination', json.pagecount, json.pageindex, json.pagesize, getUserList, '#pageNum');
+
+                }else{
+                    $.toast("没有查到数据",3000);
+                    $('#limit_list tbody').html('');
+                }
+            }
+        },
+        complete:function(){
+            $.progressBar().close();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            $.toast('服务器未响应,请稍候重试',5000);
+        }
+    })
+}
+
+/**
+ * 提交修改时间
+ * @param id
+ * @param index
+ */
+function updateLimit(id,index){
+	var enabled = $("input[name='enabled"+index+"']:checked").val();
+	var stopTime = $("#stopTime"+index).val();
+	if(enabled != undefined){
+		//alert(enabled);
+	}
+	//alert(stopTime);
+	//提交修改时间
+}
+
+/**
+ * 修改时间列表
+ * @param userId
+ */
+function getUserLimit1(userId){
+    $.ajax({
+        url: whole_path+'/api/cuser/limitlist',
+        type: 'GET',
+        dataType: 'json',
+        cache:false,
+        data: {quserId:userId
+        	},
+        beforeSend:function(data){
+            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCancel:true});
+        },
+        success:function(data){
+            if(data.status == 0) {
+                var json = data.data;
+                var list = json;
+                var temp = "";
+                if (list != null && list.length>0){
+                    var operation = ''; //操作按钮
+                    var loginType = '';
+                    var checked = '';
+                    var enabled;
+                    var bs;
+                    $.each(list, function (index, item) {
+
+                        operation = '<a class="btn-sm btn-danger btn-rounded" href="#" onclick="updateLimit('+item.limitId+','+index+');">提交</a>';
+
+                        if(item.loginTypeId == 1){
+                        	if(item.enabled == 1){
+                        		enabled = '<input type="radio" name="enabled'+index+'" value="1" checked>是<input type="radio" name="enabled'+index+'" value="0">否';
+                        		
+                        	}else{
+                        		enabled = '<input type="radio" name="enabled'+index+'" value="1">是<input type="radio" name="enabled'+index+'" value="0">否';
+                        	}
+                        	loginType = 'IOS';
+                        }else if(item.loginTypeId == 2){
+                        	if(item.enabled == 1){
+                        		enabled = '<input type="radio" name="enabled'+index+'" value="1" checked>是<input type="radio" name="enabled'+index+'" value="0">否';
+                        	}else{
+                        		enabled = '<input type="radio" name="enabled'+index+'" value="1">是<input type="radio" name="enabled'+index+'" value="0">否';
+                        	}
+                        	loginType = 'Android';
+                        }
+                        
+                        temp += '<tr class="gradeA">'
+                            + '<td data-title="登录类型">' + loginType + '</td>'
+                            + '<td data-title="允许登录">'+enabled+'</td>'
+                            + '<td data-title="到期时间"><input id="stopTime'+index+'" placeholder="请输入IOS到期时间" name="istopTime" class="laydate-icon form-control layer-date" onclick="laydate()" value="'+timeFormat(item.stopTime)+'"></td>'
+                            + '<td data-title="操作">' + operation + '</td>'
+                            + '</tr>';
+                    })
+                    $('#update_time_list tbody').html(temp);
+                    //page('#pagination', json.pagecount, json.pageindex, json.pagesize, getUserList, '#pageNum');
+
+                }else{
+                    $.toast("没有查到数据",3000);
+                    $('#update_time_list tbody').html('');
+                }
+            }
+        },
+        complete:function(){
+            $.progressBar().close();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            $.toast('服务器未响应,请稍候重试',5000);
+        }
+    })
+}
+
+
 /**
  *  功能描述：获取用户列表信息
  *  请求方式：GET
@@ -159,7 +307,7 @@ function clearModal(){
 
 function getUserList(){
     $.ajax({
-        url: manage_path+'/api/cuser/list',
+        url: whole_path+'/api/cuser/list',
         type: 'GET',
         dataType: 'json',
         cache:false,
@@ -182,10 +330,10 @@ function getUserList(){
 
                         var citylist ='<a href="city_list.jsp?id='+item.id+'" class="btn blue mini" data-toggle="tooltip" data-placement="top" title="定制城市" ><i class="icon-globe"></i></a>&nbsp;'
                         
-                        operation = '<a href="detail_user.jsp?id='+item.cuId+'">查看</a>&nbsp;&nbsp;&nbsp;'
-                        +'<a href="edit_user.jsp?id='+item.cuId+'">编辑</a>&nbsp;&nbsp;&nbsp;'
-                        +'<a href="user_edit.jsp?id='+item.cuId+'">解绑</a>&nbsp;&nbsp;&nbsp;'
-                        +'<a href="user_edit.jsp?id='+item.cuId+'">修改使用时间</a>';
+                        operation = '<a class="btn-sm btn-primary btn-rounded" href="detail_user.jsp?id='+item.cuId+'">查看</a>&nbsp;&nbsp;&nbsp;'
+                        +'<a class="btn-sm btn-info btn-rounded" href="edit_user.jsp?id='+item.cuId+'">编辑</a>&nbsp;&nbsp;&nbsp;'
+                        +'<a class="btn-sm btn-warning btn-rounded" data-toggle="modal" data-target="#unbundle" href="#" onclick="modifyStatus_stick('+item.cuId+');">解绑</a>&nbsp;&nbsp;&nbsp;'
+                        +'<a class="btn-sm btn-danger btn-rounded" data-toggle="modal" data-target="#updateTime" href="#" onclick="getUserLimit1('+item.cuId+')">修改时间</a>';
 
                         temp += '<tr class="gradeA">'
                             + '<td data-title="账号">' + item.username + '</td>'
@@ -197,12 +345,6 @@ function getUserList(){
                             + '</tr>';
                     })
                     $('#cuser_list tbody').html(temp);
-                    $("[data-toggle='popover']").popover();
-                    //操作按钮hover显示详情
-                    $("[data-toggle='tooltip']").tooltip();
-                    $("[data-toggle='modal']").tooltip();
-                    // 数据分页  #pageNum 为页面隐藏 <input type="hidden" name="pageNum" id="pageNum" value="1"  >
-                    // 当没有条件查询时，必须也要加默认的第一页#pageNum  value = 1
                     page('#pagination', json.pagecount, json.pageindex, json.pagesize, getUserList, '#pageNum');
 
                 }else{
@@ -227,21 +369,19 @@ function getUserList(){
 
 
 /**
- *  功能描述：启用、禁用
+ *  功能描述：解绑
  *  请求方式：POST
- *  请求地址：/api/user_manage/modify_status
+ *  请求地址：/api/cuser/modify_status
  *  函数名称：modifyStatus
- *  参数：id:banner主键ID; beUsed:启用禁用;
  */
 
-function modifyStatus(id,beUsed){
+function modifyStatus(id){
     $.ajax({
-        url:manage_path+ '/api/user_manage/modify_status',
+        url:whole_path+ '/api/cuser/modify_status',
         type: 'POST',
         dataType: 'json',
         data: {
-            'id':id,
-            'status':beUsed
+            'limitId':id
         },
         beforeSend:function(){
             $.progressBar({message:'<p>正在努力加载数据...</p>',modal:false,canCancel:true});
@@ -267,177 +407,6 @@ function modifyStatus(id,beUsed){
 
 }
 
-
-
-/**
- *  功能描述：获取用户密码信息
- *  请求方式：GET
- *  请求地址：/api/user_manage/detail
- *  函数名称：getUserDetail
- *  参数：id:ID
- */
-
-function getUserDetail(id){
-    $.ajax({
-        url:manage_path+'/api/user_manage/detail',
-        type:'GET',
-        cache:false,
-        dataType:'json',
-        data:{
-            id:id
-        },
-        beforeSend:function(){
-            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
-        },
-        success:function(data){
-            if(data.status == 0){
-                var json = data.data;
-
-                $('#reset_id').val(json.id);
-                $('#reset_userName').val(json.userName);
-
-            }
-        },
-        complete:function(){
-            $.progressBar().close();
-        },
-        error:function(XMLHttpRequest,textStatus,errorThrown){
-            $.toast('服务器未响应，请稍候重试',5000);
-        }
-    });
+function timeFormat(timestamp) {
+	  return (new Date(timestamp)).Format('yyyy-MM-dd');
 }
-
-
-
-/**
- *  功能描述：获取用户到期时间信息
- *  请求方式：GET
- *  请求地址：/api/user_manage/detail
- *  函数名称：getExpireDate
- *  参数：id:ID
- */
-
-function getExpireDate(id){
-    $.ajax({
-        url:manage_path+'/api/user_manage/detail',
-        type:'GET',
-        cache:false,
-        dataType:'json',
-        data:{
-            id:id
-        },
-        beforeSend:function(){
-            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
-        },
-        success:function(data){
-            if(data.status == 0){
-                var json = data.data;
-
-                $('#resetExpireDate_id').val(json.id);
-                $('#reset_expireDate').val(json.userName);
-                $('input[name=startTime]').val(timestampFormat(json.startTime));
-                $('input[name=endTime]').val(timestampFormat(json.endTime));
-
-            }
-        },
-        complete:function(){
-            $.progressBar().close();
-        },
-        error:function(XMLHttpRequest,textStatus,errorThrown){
-            $.toast('服务器未响应，请稍候重试',5000);
-        }
-    });
-}
-
-
-/**
- *  功能描述：重置用户信息
- *  请求方式：POST
- *  请求地址：/api/user_manage/reset
- *  函数名称：resetUserInfo
- */
-function resetUserInfo() {
-    var passVal = $('#reset_password').val();
-    var data;
-    if (passVal != null && passVal != ""){
-        data = $('#reset_password_form').serialize();
-    }else {
-        data = $('#reset_expireDate_form').serialize()
-    }
-
-    $.ajax({
-        url:manage_path+'/api/user_manage/reset',
-        type:'POST',
-        dataType:'json',
-        data: data,
-        beforeSend:function(){
-            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
-        },
-        success:function(data){
-            if(data.status == 0){
-                $.toast('操作成功',1000);
-                setTimeout(function(){
-                    window.location.href = 'user_list.jsp';
-                },1000);
-            }else {
-                $.toast('操作失败,系统错误',1000);
-            }
-        },
-        complete:function(){
-            $.progressBar().close();
-        },
-        error:function(XMLHttpRequest,textStatus,errorThrown){
-            $.toast('服务器未响应,请稍候重试',5000);
-        }
-    });
-}
-
-
-/**
- *  功能描述：用户设备解绑
- *  请求方式：POST
- *  请求地址：/api/user_manage/reset
- *  函数名称：resetUserInfo
- */
-function userUnbind(id) {
-    $.ajax({
-        url:manage_path+'/api/binding/unbind',
-        type:'POST',
-        dataType:'json',
-        data: {userId:id},
-        beforeSend:function(){
-            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
-        },
-        success:function(data){
-            if(data.status == 0){
-                $.toast('操作成功',1000);
-                setTimeout(function(){
-                    window.location.href = 'user_list.jsp';
-                },1000);
-            }else {
-                $.toast('操作失败,系统错误',1000);
-            }
-        },
-        complete:function(){
-            $.progressBar().close();
-        },
-        error:function(XMLHttpRequest,textStatus,errorThrown){
-            $.toast('服务器未响应,请稍候重试',5000);
-        }
-    });
-}
-
-//获取项目路径
-function getRootPath()
-{
-    var pathName = window.location.pathname.substring(1);
-
-    var webName = pathName == '' ? '' : pathName.substring(0,pathName.indexOf('/'));
-
-    var path = window.location.protocol + '//' + window.location.host + '/'+ webName ;
-
-    return path;
-
-}
-//定义路径全局变量
-var manage_path=getRootPath();

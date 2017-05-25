@@ -148,26 +148,21 @@ function getUserDetail(){
                 if(json.length>0){
                 	json = json[0];
                 	$('input[name=id]').val(json.cuId);
-                    $('span[name=username]').html(json.username);
-                    $('span[name=password]').html(json.password);
-                    $('span[name=certName]').html(json.certName);
-                    $('span[name=carPhone]').html(json.carPhone);
-                    $('span[name=stopTime]').html(timeFormat(json.stopTime));
-                    $('span[name=carLength]').html(json.carLength);
-                    $('span[name=carWeight]').html(json.carWeight);
-                    $('span[name=carNumber1]').html(json.carNumber1);
-                    $('span[name=carNumber2]').html(json.carNumber2);
-                    $('span[name=carType]').html(json.carType);
-                    if(json.carStatues == 0){
-                    	$('span[name=carStatues]').html("空车");
-                    }else if(json.carStatues == 1){
-                    	$('span[name=carStatues]').html("满载");
-                    }
-                    if(json.loginType == 1){
-                    	$('span[name=loginType]').html("Android");
-                    }else if(json.loginType == 2){
-                    	$('span[name=loginType]').html("IOS");
-                    }
+                    $('input[name=username]').val(json.username);
+                    $('input[name=password]').val(json.password);
+                    $('input[name=certName]').val(json.certName);
+                    $('input[name=carPhone]').val(json.carPhone);
+                    $('input[name=carLength]').val(json.carLength);
+                    $('input[name=carWeight]').val(json.carWeight);
+                    $('input[name=carNumber1]').val(json.carNumber1);
+                    $('input[name=carNumber2]').val(json.carNumber2);
+                    $('input[name=carType]').val(json.carType);
+                    $('#carStatues option').each(function () {
+                        if ($(this).val() == json.carStatues) {
+                            $(this).attr('selected', true);
+                            $('#carStatues').trigger('change');
+                        }
+                    });
                    
                 }
                 

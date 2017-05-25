@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ontime.mapper.manual.CustomCUserMapper">
+	
+	<update id="updateLimitHardware" parameterType="com.ontime.pojo.QLoginLimit">
+		UPDATE q_login_limit SET hardware=NULL WHERE limit_id=#{limitId}
+	</update>
+	
+</mapper>

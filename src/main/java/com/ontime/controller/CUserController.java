@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ontime.exception.DatabaseException;
 import com.ontime.handler.CUserHandler;
 import com.ontime.pojo.CUsers;
+import com.ontime.pojo.QLoginLimit;
 import com.ontime.request.trunk.CUserRequest;
 import com.ontime.service.CUsersService;
 import com.ontime.utils.APIResponse;
@@ -76,6 +77,30 @@ public class CUserController {
         }
         return apiResponse;
     }
+    
+    /**
+     * 获取解绑列表
+     * @param request
+     * @param userManageRequest
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/limitlist",method = RequestMethod.GET)
+    public APIResponse<List<QLoginLimit>> limitList(QLoginLimit limit){
+        APIResponse<List<QLoginLimit>> apiResponse = new APIResponse<>();
+        List<QLoginLimit> list = null;
+        try {
+        	list = cuserHandler.queryLimit(limit);
+            apiResponse.setStatus(YCSystemStatusEnum.SUCCESS.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SUCCESS.getDesc());
+            apiResponse.setData(list);
+        } catch (Throwable e) {
+            LOG.error("获取解绑列表",limit);
+            apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
+        }
+        return apiResponse;
+    }
 	
 	@ResponseBody
     @RequestMapping(value = "/verify",method = RequestMethod.GET)
@@ -89,6 +114,27 @@ public class CUserController {
             apiResponse.setData(list);
         } catch (Throwable e) {
             LOG.error("获取用户信息发生异常",user);
+            apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
+        }
+        return apiResponse;
+    }
+	
+	/**
+	 * 解绑
+	 * @param limit
+	 * @return
+	 */
+	@ResponseBody
+    @RequestMapping(value = "/modify_status",method = RequestMethod.POST)
+    public APIResponse modifyStatus(QLoginLimit limit){
+        APIResponse apiResponse = new APIResponse<>();
+        try {
+        	cuserHandler.modifyStatus(limit);
+            apiResponse.setStatus(YCSystemStatusEnum.SUCCESS.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SUCCESS.getDesc());
+        } catch (Throwable e) {
+            LOG.error("解绑发生异常",limit);
             apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
             apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
         }

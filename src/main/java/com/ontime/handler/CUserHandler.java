@@ -67,7 +67,7 @@ public class CUserHandler {
         Validator.isEmpty(request, YCSystemStatusEnum.PARAM_EMPTY);
         Validator.isEmpty(request.getUsername(), "账号不能为空");
         Validator.isEmpty(request.getPassword(), "密码不能为空");
-
+        
         //车主基本信息
         try {
         	CUsers user = new CUsers();
@@ -83,9 +83,7 @@ public class CUserHandler {
         	user.setCarNumber2(request.getCarNumber2());
         	user.setPassword(request.getPassword());
         	
-        	QLoginLimit limit = new QLoginLimit();
-        	limit.setLoginTypeId(request.getLoginType());
-        	limit.setStopTime(request.getStopTime());
+        	
         	
             //判断ID是否为空，是则添加，否则更新
             if (request.getId() == null) {
@@ -100,10 +98,8 @@ public class CUserHandler {
 
                 //添加登录绑定信息
                 if(id > 0){
-                	limit.setQuserId(id);
-                	limit.setEnabled(1);
-                	limit.setIsCar(1);
-                	userService.insertLimit(limit);
+                	insertLimit(user.getCuId(), request.getAloginType(), request.getAstopTime(),2);
+                	insertLimit(user.getCuId(), request.getIloginType(), request.getIstopTime(),1);
                 }
                 
             } else {
@@ -111,17 +107,30 @@ public class CUserHandler {
             	user.setUpdateTime(new Date());
             	boolean result = userService.update(user);
                 //修改绑定信息
-            	if(result){
+            	/*if(result){
             		limit.setQuserId(request.getId());
             		limit.setUpdateTime(new Date());
             		userService.updateLimit(limit);
-            	}
+            	}*/
 
             }
         } catch (DatabaseException e) {
             LOG.error("editUser exception", request);
             throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
         }
+    }
+    
+    public void insertLimit(Integer userId,Integer loginTypeId,Date stopTime,Integer type) throws DatabaseException{
+    	QLoginLimit limit = new QLoginLimit();
+    	limit.setLoginTypeId(type);
+    	if(loginTypeId != null){
+        	limit.setStopTime(stopTime);
+        	limit.setEnabled(1);
+    	}
+    	limit.setQuserId(userId);
+    	limit.setIsCar(1);
+    	userService.insertLimit(limit);
+    	
     }
     
     /**
@@ -158,6 +167,27 @@ public class CUserHandler {
             throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
         }
 		return page;
+    }
+    
+    
+    public List<QLoginLimit> queryLimit(QLoginLimit limit)throws YCException{
+    	List<QLoginLimit> limitlist = null;
+        try {
+        	limitlist = userService.queryLimit(limit);
+        } catch (DatabaseException e) {
+            LOG.error("queryLimit exception",limit);
+            throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
+        }
+		return limitlist;
+    }
+    
+    public void modifyStatus(QLoginLimit limit)throws YCException{
+    	try {
+        	userService.updateLimitByKey(limit);
+        } catch (DatabaseException e) {
+            LOG.error("modifyStatus exception",limit);
+            throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
+        }
     }
 
 }

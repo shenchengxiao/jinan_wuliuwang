@@ -51,14 +51,10 @@
                                 	<span id="carPhone" name="carPhone"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-lg-3 control-label">登录类型：</label>
                                 <div class="col-lg-8">
                                 	<span id="loginType" name="loginType"></span>
-                                	<!-- <select class="form-control m-b" name="loginType" id="loginType" readonly="readonly">
-                                        <option value="1">Android</option>
-                                        <option value="2">IOS</option>
-                                    </select> -->
                                 </div>
                             </div>
                             <div class="form-group">
@@ -66,7 +62,7 @@
                                 <div class="col-lg-8">
                                 	<span id="stopTime" name="stopTime"></span>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">车长：</label>
                                 <div class="col-lg-8">
@@ -128,5 +124,5 @@
     <script type="text/javascript">
     laydate({elem:"#stopTime",event:"focus"});
     </script>
-<script src="${ctx}/js/trunk/user_edit.js"></script>
+<script src="${ctx}/js/trunk/user_detal.js"></script>
 </body>

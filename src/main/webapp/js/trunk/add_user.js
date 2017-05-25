@@ -1,6 +1,4 @@
-
 $(function(){
-
     $('#save_from').on('click',function(){
         var validFlag = $('#add_user_info_form').valid();
         if (validFlag) {
@@ -15,7 +13,26 @@ $(function(){
       location.href = whole_path+"/view/trunk/user_list.jsp";
 
     });
+    
+    $('#aloginType').on('click',function(){
+    	if($("#aloginType").is(':checked')){
+    		$("#astopTime").prop("required", "true");
+    		$("#aloginType").val(2);
+    	}else{
+    		$("#astopTime").removeAttr("required");
+    	}
 
+    });
+    $('#iloginType').on('click',function(){
+    	alert($("#iloginType").is(':checked'));
+    	if($("#iloginType").is(':checked')){
+    		$("#istopTime").prop("required", "true");
+    		$("#iloginType").val(1);
+    	}else{
+    		$("#istopTime").removeAttr("required");
+    	}
+
+    });
 
     //自定义校验规则
     // $.validator.addMethod("isMobile", function(value, element) {
@@ -40,9 +57,6 @@ $(function(){
             password:{
                 required: true,
                 rangelength:[6,18]
-            },
-            stopTime:{
-            	required: true
             }
         },
         messages:{
@@ -52,9 +66,6 @@ $(function(){
             password:{
                 required:'请输入用户密码',
                 rangelength:'用户密码不能小于6个字符'
-            },
-            stopTime:{
-                required:'请输入到期时间'
             }
         },
         invalidHandler:function(event,validator){

@@ -20,8 +20,11 @@ public class CUserRequest extends BaseQuery {
 	private String carNumber2;
 	private Integer carStatues;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date stopTime;
-	private Integer loginType;
+	private Date astopTime;
+	private Integer aloginType;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date istopTime;
+	private Integer iloginType;
 	
 	public Integer getId() {
 		return id;
@@ -89,18 +92,31 @@ public class CUserRequest extends BaseQuery {
 	public void setCarStatues(Integer carStatues) {
 		this.carStatues = carStatues;
 	}
-	public Date getStopTime() {
-		return stopTime;
+	public Date getAstopTime() {
+		return astopTime;
 	}
-	public void setStopTime(Date stopTime) {
-		this.stopTime = stopTime;
+	public void setAstopTime(Date astopTime) {
+		this.astopTime = astopTime;
 	}
-	public Integer getLoginType() {
-		return loginType;
+	public Integer getAloginType() {
+		return aloginType;
 	}
-	public void setLoginType(Integer loginType) {
-		this.loginType = loginType;
+	public void setAloginType(Integer aloginType) {
+		this.aloginType = aloginType;
 	}
+	public Date getIstopTime() {
+		return istopTime;
+	}
+	public void setIstopTime(Date istopTime) {
+		this.istopTime = istopTime;
+	}
+	public Integer getIloginType() {
+		return iloginType;
+	}
+	public void setIloginType(Integer iloginType) {
+		this.iloginType = iloginType;
+	}
+	
 	
 	
 

@@ -14,6 +14,7 @@ import com.ontime.exception.DatabaseException;
 import com.ontime.interceptor.PageMybatisInterceptor;
 import com.ontime.mapper.CUsersMapper;
 import com.ontime.mapper.QLoginLimitMapper;
+import com.ontime.mapper.manual.CustomCUserMapper;
 import com.ontime.pojo.CUsers;
 import com.ontime.pojo.CUsersExample;
 import com.ontime.pojo.CUsersExample.Criteria;
@@ -31,6 +32,8 @@ public class CUsersServiceImpl implements CUsersService{
 	
 	@Resource
 	private QLoginLimitMapper limitMapper;
+	@Resource
+	private CustomCUserMapper lMapper;
 	
 	Logger LOG = LoggerFactory.getLogger(CUsersServiceImpl.class);
 
@@ -72,6 +75,7 @@ public class CUsersServiceImpl implements CUsersService{
 	public Page<CUsers> queryUser(CUserRequest userRequest) throws DatabaseException {
 		try {
 			CUsersExample example = new CUsersExample();
+			example.setOrderByClause("register_time desc");
 			Criteria criteria = example.createCriteria();
 			if(StringUtils.isNotBlank(userRequest.getUsername())){
 				criteria.andUsernameEqualTo(userRequest.getUsername());
@@ -120,7 +124,7 @@ public class CUsersServiceImpl implements CUsersService{
 			}
 			
 			List<CUsers> cuserList = userMapper.selectByExample(example);
-			if(cuserList != null && cuserList.size()>0){
+			/*if(cuserList != null && cuserList.size()>0){
 				for(CUsers cu : cuserList){
 					
 					QLoginLimitExample qexample = new QLoginLimitExample();
@@ -134,7 +138,7 @@ public class CUsersServiceImpl implements CUsersService{
 					}
 					
 				}
-			}
+			}*/
 			
 			return cuserList;
 
@@ -192,9 +196,9 @@ public class CUsersServiceImpl implements CUsersService{
 	    	user.setCarNumber2(request.getCarNumber2());
 	    	user.setPassword(request.getPassword());
 	    	
-	    	QLoginLimit limit = new QLoginLimit();
+	    	/*QLoginLimit limit = new QLoginLimit();
 	    	limit.setLoginTypeId(request.getLoginType());
-	    	limit.setStopTime(request.getStopTime());
+	    	limit.setStopTime(request.getStopTime());*/
 	    	
 	        //判断ID是否为空，是则添加，否则更新
 	        if (request.getId() == null) {
@@ -203,20 +207,20 @@ public class CUsersServiceImpl implements CUsersService{
 	
 	            //添加登录绑定信息
 	            if(id > 0){
-	            	limit.setQuserId(id);
+	            	/*limit.setQuserId(id);
 	            	limit.setEnabled(1);
-	            	limitMapper.insert(limit);
+	            	limitMapper.insert(limit);*/
 	            }
 	            
 	        } else {
 	        	userMapper.updateByPrimaryKeySelective(user);
 	
 	            //修改绑定信息
-	    		limit.setQuserId(request.getId());
+	    		/*limit.setQuserId(request.getId());
 	    		QLoginLimitExample example = new QLoginLimitExample();
 	            com.ontime.pojo.QLoginLimitExample.Criteria criteria = example.createCriteria();
 	            criteria.andQuserIdEqualTo(limit.getQuserId());
-	            int val = limitMapper.updateByExampleSelective(limit, example);
+	            int val = limitMapper.updateByExampleSelective(limit, example);*/
 	
 	        }
 		} catch (Throwable e) {
@@ -224,6 +228,33 @@ public class CUsersServiceImpl implements CUsersService{
             throw new DatabaseException(e.getMessage());
         }
 		
+	}
+
+	@Override
+	public List<QLoginLimit> queryLimit(QLoginLimit limit) throws DatabaseException {
+		
+		QLoginLimitExample example = new QLoginLimitExample();
+		com.ontime.pojo.QLoginLimitExample.Criteria criteria = example.createCriteria();
+		criteria.andQuserIdEqualTo(limit.getQuserId());
+		criteria.andIsCarEqualTo(1);
+		if(limit.getEnabled() != null){
+			criteria.andEnabledEqualTo(limit.getEnabled());
+		}
+		return limitMapper.selectByExample(example);
+	}
+
+	@Override
+	public void updateLimitByKey(QLoginLimit limit) throws DatabaseException {
+		try {
+            if (limit == null){
+                LOG.error("updateLimitByKey 信息为空",limit);
+            }
+            
+            lMapper.updateLimitHardware(limit);
+        } catch (Throwable e) {
+            LOG.error("updateLimitByKey 异常",limit);
+            throw new DatabaseException(e.getMessage());
+        }
 	}
 
 }
