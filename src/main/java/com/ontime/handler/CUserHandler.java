@@ -189,5 +189,14 @@ public class CUserHandler {
             throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
         }
     }
+    
+    public void modifyLimit(QLoginLimit limit)throws YCException{
+    	try {
+        	userService.updateLoginLimitByKey(limit);
+        } catch (DatabaseException e) {
+            LOG.error("modifyStatus exception",limit);
+            throw new YCException(YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getCode(), YCSystemStatusEnum.INVOKE_API_RETURN_EXCEPTION.getDesc());
+        }
+    }
 
 }

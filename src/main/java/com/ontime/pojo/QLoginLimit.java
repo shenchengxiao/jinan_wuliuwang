@@ -3,6 +3,8 @@ package com.ontime.pojo;
 import com.ontime.request.BaseEntity;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class QLoginLimit extends BaseEntity {
     private Integer limitId;
 
@@ -13,7 +15,7 @@ public class QLoginLimit extends BaseEntity {
     private Integer enabled;
 
     private Date updateTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date stopTime;
 
     private String hardware;

@@ -24,7 +24,6 @@ $(function(){
 
     });
     $('#iloginType').on('click',function(){
-    	alert($("#iloginType").is(':checked'));
     	if($("#iloginType").is(':checked')){
     		$("#istopTime").prop("required", "true");
     		$("#iloginType").val(1);

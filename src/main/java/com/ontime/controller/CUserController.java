@@ -140,5 +140,21 @@ public class CUserController {
         }
         return apiResponse;
     }
+	
+	@ResponseBody
+    @RequestMapping(value = "/modify_limit",method = RequestMethod.POST)
+    public APIResponse modifyLimit(QLoginLimit limit){
+        APIResponse apiResponse = new APIResponse<>();
+        try {
+        	cuserHandler.modifyLimit(limit);
+            apiResponse.setStatus(YCSystemStatusEnum.SUCCESS.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SUCCESS.getDesc());
+        } catch (Throwable e) {
+            LOG.error("解绑发生异常",limit);
+            apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
+        }
+        return apiResponse;
+    }
 
 }

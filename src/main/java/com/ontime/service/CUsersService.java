@@ -26,5 +26,7 @@ public interface CUsersService {
 	public List<QLoginLimit> queryLimit(QLoginLimit limit) throws DatabaseException; 
 	
 	public void updateLimitByKey(QLoginLimit limit) throws DatabaseException;
+	
+	public void updateLoginLimitByKey(QLoginLimit limit) throws DatabaseException;
 
 }

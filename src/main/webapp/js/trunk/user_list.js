@@ -218,11 +218,40 @@ function getUserLimit(userId){
 function updateLimit(id,index){
 	var enabled = $("input[name='enabled"+index+"']:checked").val();
 	var stopTime = $("#stopTime"+index).val();
-	if(enabled != undefined){
-		//alert(enabled);
+	if(enabled == undefined){
+		enabled=0;
 	}
-	//alert(stopTime);
-	//提交修改时间
+	$.ajax({
+        url:whole_path+ '/api/cuser/modify_limit',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'limitId':id,
+            'enabled':enabled,
+            'stopTime':stopTime
+        },
+        beforeSend:function(){
+            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:false,canCancel:true});
+        },
+        success:function(data){
+            if(data.status == 0){
+                $.toast('操作成功',3000);
+                setTimeout(function(){
+                    window.location.href = 'user_list.jsp';
+                },500)
+            }else{
+                $.toast(data.msg,3000);
+            }
+
+        },
+        complete:function(){
+            $.progressBar().close();
+        },
+        error:function(XMLHttpRequest,textStatus,errorThrown){
+            $.toast('服务器未响应,请稍候重试',5000);
+        }
+    })
+	
 }
 
 /**
@@ -271,11 +300,14 @@ function getUserLimit1(userId){
                         	}
                         	loginType = 'Android';
                         }
-                        
+                        var stopTime = item.stopTime;
+                        if(item.stopTime == null){
+                        	stopTime = new Date().getTime();
+                        }
                         temp += '<tr class="gradeA">'
                             + '<td data-title="登录类型">' + loginType + '</td>'
                             + '<td data-title="允许登录">'+enabled+'</td>'
-                            + '<td data-title="到期时间"><input id="stopTime'+index+'" placeholder="请输入IOS到期时间" name="istopTime" class="laydate-icon form-control layer-date" onclick="laydate()" value="'+timeFormat(item.stopTime)+'"></td>'
+                            + '<td data-title="到期时间"><input id="stopTime'+index+'" placeholder="请输入IOS到期时间" name="istopTime" class="laydate-icon form-control layer-date" onclick="laydate()" value="'+timeFormat(stopTime)+'"></td>'
                             + '<td data-title="操作">' + operation + '</td>'
                             + '</tr>';
                     })

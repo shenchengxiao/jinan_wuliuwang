@@ -1,5 +1,6 @@
 package com.ontime.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -253,6 +254,17 @@ public class CUsersServiceImpl implements CUsersService{
             lMapper.updateLimitHardware(limit);
         } catch (Throwable e) {
             LOG.error("updateLimitByKey 异常",limit);
+            throw new DatabaseException(e.getMessage());
+        }
+	}
+
+	@Override
+	public void updateLoginLimitByKey(QLoginLimit limit) throws DatabaseException {
+		try {
+			limit.setUpdateTime(new Date());
+			limitMapper.updateByPrimaryKeySelective(limit);
+		} catch (Throwable e) {
+            LOG.error("updateLoginLimitByKey 异常",limit);
             throw new DatabaseException(e.getMessage());
         }
 	}
