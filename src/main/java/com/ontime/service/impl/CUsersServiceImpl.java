@@ -237,10 +237,8 @@ public class CUsersServiceImpl implements CUsersService{
 		QLoginLimitExample example = new QLoginLimitExample();
 		com.ontime.pojo.QLoginLimitExample.Criteria criteria = example.createCriteria();
 		criteria.andQuserIdEqualTo(limit.getQuserId());
-		criteria.andIsCarEqualTo(1);
-		if(limit.getEnabled() != null){
-			criteria.andEnabledEqualTo(limit.getEnabled());
-		}
+//		criteria.andIsCarEqualTo(1);
+		criteria.andEnabledEqualTo(1);
 		return limitMapper.selectByExample(example);
 	}
 

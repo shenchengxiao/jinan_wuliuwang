@@ -100,7 +100,3 @@ $("#userName").blur(function(){
         }
     });
 })
-
-function timeFormat(timestamp) {
-  return (new Date(timestamp)).Format('yyyy-MM-dd');
-}

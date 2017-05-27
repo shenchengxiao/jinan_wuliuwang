@@ -57,7 +57,7 @@ public class CUserController {
 	/**
      * 获取用户列表
      * @param request
-     * @param userManageRequest
+     * @param userRequest
      * @return
      */
     @ResponseBody
@@ -81,12 +81,12 @@ public class CUserController {
     /**
      * 获取解绑列表
      * @param request
-     * @param userManageRequest
+     * @param limit
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/limitlist",method = RequestMethod.GET)
-    public APIResponse<List<QLoginLimit>> limitList(QLoginLimit limit){
+    public APIResponse<List<QLoginLimit>> limitList(HttpServletRequest request ,QLoginLimit limit){
         APIResponse<List<QLoginLimit>> apiResponse = new APIResponse<>();
         List<QLoginLimit> list = null;
         try {

@@ -5,6 +5,7 @@ import com.ontime.exception.YCException;
 import com.ontime.handler.CompanyLineHandler;
 import com.ontime.pojo.QUsers;
 import com.ontime.request.QUsersRequest;
+import com.ontime.request.companyline.CompanyLineRequest;
 import com.ontime.response.QuserResponse;
 import com.ontime.utils.APIResponse;
 import com.ontime.utils.Page;
@@ -35,19 +36,19 @@ public class CompanyLineController {
     /**
      * 添加企业或者专业版用户信息
      * @param request
-     * @param qUsers
+     * @param companyLineRequest
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/add" ,method = RequestMethod.POST)
-    public APIResponse add(HttpServletRequest request , QUsers qUsers){
+    public APIResponse add(HttpServletRequest request , CompanyLineRequest companyLineRequest){
         APIResponse apiResponse = new APIResponse();
         try {
-            companyLineHandler.addCompanyLineUser(qUsers);
+            companyLineHandler.addCompanyLineUser(companyLineRequest);
             apiResponse.setStatus(BusinessStatusEnum.SUCCESS.getCode());
             apiResponse.setMsg(BusinessStatusEnum.SUCCESS.getDesc());
         } catch (Throwable e) {
-            LOG.error("添加用户发生异常",qUsers);
+            LOG.error("添加用户发生异常",companyLineRequest);
             apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
             apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
         }
@@ -96,6 +97,31 @@ public class CompanyLineController {
             apiResponse.setData(qUsers);
         } catch (Throwable e) {
             LOG.error("获取企业和专线用户详情信息发生异常",id);
+            apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
+            apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
+        }
+        return apiResponse;
+    }
+
+    /**
+     * 校验用户是否已存在
+     * @param request
+     * @param userType
+     * @param userName
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/verify" ,method = RequestMethod.GET)
+    public APIResponse detail(HttpServletRequest request , Integer userType,String userName){
+        APIResponse apiResponse = new APIResponse<>();
+        boolean flag;
+        try {
+            flag = companyLineHandler.verifyQuser(userType,userName);
+            apiResponse.setStatus(BusinessStatusEnum.SUCCESS.getCode());
+            apiResponse.setMsg(BusinessStatusEnum.SUCCESS.getDesc());
+            apiResponse.setData(flag);
+        } catch (Throwable e) {
+            LOG.error("获取企业和专线用户详情信息发生异常",userType);
             apiResponse.setStatus(YCSystemStatusEnum.SYSTEM_ERROR.getCode());
             apiResponse.setMsg(YCSystemStatusEnum.SYSTEM_ERROR.getDesc());
         }

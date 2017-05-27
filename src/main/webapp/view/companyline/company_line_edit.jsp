@@ -47,49 +47,49 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">姓名：</label>
+                                <label class="col-lg-3 control-label">姓名:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入姓名" class="form-control" name="certName" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">联系电话<span class="required">*</span></label>
+                                <label class="col-lg-3 control-label">联系电话:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入联系电话，多个以逗号分割" class="form-control" name="phone" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">身份证号<span class="required">*</span></label>
+                                <label class="col-lg-3 control-label">身份证号:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入身份证号" class="form-control" name="certNumber" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">身份证地址：</label>
+                                <label class="col-lg-3 control-label">身份证地址:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入身份证地址" class="form-control" name="certAddress" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">公司名称：</label>
+                                <label class="col-lg-3 control-label">公司名称:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入公司名称" class="form-control" name="compName" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">公司地址：</label>
+                                <label class="col-lg-3 control-label">公司地址:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入公司地址" class="form-control" name="compAddress" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">公司电话：</label>
+                                <label class="col-lg-3 control-label">公司电话:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入公司电话" class="form-control" name="compPhone" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">公司简介：</label>
+                                <label class="col-lg-3 control-label">公司简介:</label>
                                 <div class="col-lg-8">
                                     <textarea maxlength="1000" placeholder="公司简介"
                                               class="form-control" cols="" rows="5"
@@ -97,13 +97,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">专线城市</label>
+                                <label class="col-lg-3 control-label">专线城市:</label>
                                 <div class="col-lg-8">
                                     <input type="text" placeholder="请输入专线城市，多个以#分割" class="form-control" name="zlineCity" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">备注：</label>
+                                <label class="col-lg-3 control-label">备注:</label>
                                 <div class="col-lg-8">
                                     <textarea maxlength="1000" placeholder="备注"
                                               class="form-control" cols="" rows="5"

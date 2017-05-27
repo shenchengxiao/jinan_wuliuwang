@@ -16,6 +16,6 @@ public interface CompanyLineService {
 
     Page<QUsers> fetchQUsersPage(QUsersRequest qUsersRequest) throws DatabaseException;
 
-    QUsers fetchQUsersDetail(Integer id) throws DatabaseException;
+    QUsers fetchQUsersDetail(QUsersRequest qUsersRequest) throws DatabaseException;
 
 }

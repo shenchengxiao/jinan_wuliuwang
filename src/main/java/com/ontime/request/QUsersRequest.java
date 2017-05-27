@@ -5,6 +5,8 @@ package com.ontime.request;
  */
 public class QUsersRequest extends BaseQuery{
 
+    private Integer id;
+
     /** 帐号 */
     private String accountName;
 
@@ -16,6 +18,16 @@ public class QUsersRequest extends BaseQuery{
 
     /** 用户类型（1、企业版 2、专线版）*/
     private Integer userType;
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getAccountName() {
         return accountName;

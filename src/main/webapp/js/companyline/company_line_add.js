@@ -11,10 +11,25 @@ $(function(){
 
     });
 
-    // //用户编号监听事件
-    // $('#userName').bind('input propertychange', function() {
-    //     $('#userNum').val($(this).val());
-    // });
+    //选中平台验证日期
+    $('#aloginType').on('click',function(){
+        if($("#aloginType").is(':checked')){
+            $("#astopTime").prop("required", "true");
+            $("#aloginType").val(2);
+        }else{
+            $("#astopTime").removeAttr("required");
+        }
+
+    });
+    $('#iloginType').on('click',function(){
+        if($("#iloginType").is(':checked')){
+            $("#istopTime").prop("required", "true");
+            $("#iloginType").val(1);
+        }else{
+            $("#istopTime").removeAttr("required");
+        }
+
+    });
 
     /**
      *  功能描述：添加用户验证
@@ -31,12 +46,6 @@ $(function(){
             },
             password: {
                 required: true
-            },
-            phone:{
-                required: true
-            },
-            certNumber:{
-                required: true
             }
         },
         messages:{
@@ -46,12 +55,6 @@ $(function(){
             },
             password:{
                 required:'请输入密码'
-            },
-            phone:{
-                required:'请输入手机号码'
-            },
-            certNumber:{
-                required:'请输入身份证号'
             }
         },
         invalidHandler:function(event,validator){
@@ -112,35 +115,37 @@ function addCompLineUser(){
 }
 
 //校验用户是否已存在
-// $("#userName").blur(function(){
-//     $.ajax({
-//         url:manage_path+'/api/user_manage/verify',
-//         type:'GET',
-//         cache:false,
-//         dataType:'json',
-//         data:{userName:$('#userName').val()},
-//         beforeSend:function(){
-//             $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
-//         },
-//         success:function(data){
-//             if(data.status == 0){
-//                 if (data.data.length > 0) {
-//                     var txt = "此用户已存在,请重新输入！";
-//                     window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
-//                     $('#userName').val('');
-//                     $('#userNum').val('');
-//                 }
-//             }else {
-//                 $.toast('操作失败,系统错误',1000);
-//             }
-//         },
-//         complete:function(){
-//             $.progressBar().close();
-//         },
-//         error:function(XMLHttpRequest,textStatus,errorThrown){
-//             $.toast('服务器未响应,请稍候重试',5000);
-//         }
-//     });
-// })
+$("#user_name_id").blur(function(){
+    $.ajax({
+        url:whole_path+'/api/company_line/verify',
+        type:'GET',
+        cache:false,
+        dataType:'json',
+        data:{
+            'userType':$('#userTypeId option:selected').val(),
+            'userName':$('#user_name_id').val()
+        },
+        beforeSend:function(){
+            $.progressBar({message:'<p>正在努力加载数据...</p>',modal:true,canCance:true});
+        },
+        success:function(data){
+            if(data.status == 0){
+                if (data.data == true) {
+                    var txt = "此用户已存在,请重新输入！";
+                    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+                    $('#user_name_id').val('');
+                }
+            }else {
+                $.toast('操作失败,系统错误',1000);
+            }
+        },
+        complete:function(){
+            $.progressBar().close();
+        },
+        error:function(XMLHttpRequest,textStatus,errorThrown){
+            $.toast('服务器未响应,请稍候重试',5000);
+        }
+    });
+})
 
 

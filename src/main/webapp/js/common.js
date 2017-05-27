@@ -155,3 +155,8 @@ function getRootPath()
 }
 //定义路径全局变量
 var whole_path=getRootPath();
+
+
+function timeFormat(timestamp) {
+    return (new Date(timestamp)).Format('yyyy-MM-dd');
+}

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by shencx on 2017/5/19.
@@ -123,14 +124,29 @@ public class CompanyLineServiceImpl implements CompanyLineService{
     }
 
     @Override
-    public QUsers fetchQUsersDetail(Integer id) throws DatabaseException {
+    public QUsers fetchQUsersDetail(QUsersRequest qUsersRequest) throws DatabaseException {
         try {
-            if (id == null){
-                LOG.error("fetchQUsersDetail id 为空",id);
+            if (qUsersRequest == null){
+                LOG.error("fetchQUsersDetail 信息为空",qUsersRequest);
                 return null;
             }
-            QUsers qUsers = qUsersMapper.selectByPrimaryKey(id);
-            return qUsers;
+            QUsersExample example = new QUsersExample();
+            QUsersExample.Criteria criteria = example.createCriteria();
+            if (qUsersRequest.getId() != null){
+                criteria.andQuIdEqualTo(qUsersRequest.getId());
+            }
+            if (qUsersRequest.getUserType() != null){
+                criteria.andUserTypeIdEqualTo(qUsersRequest.getUserType());
+            }
+            if (StringUtils.isNoneBlank(qUsersRequest.getUserName())){
+                criteria.andUsernameEqualTo(qUsersRequest.getUserName());
+            }
+            List<QUsers> list = qUsersMapper.selectByExample(example);
+            if (list == null || list.size() == 0){
+                return null;
+            }else {
+                return list.get(0);
+            }
         } catch (Throwable e) {
             LOG.error("fetchQUsersDetail 异常",e);
             throw new DatabaseException(e.getMessage());
